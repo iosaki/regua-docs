@@ -3,71 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Régua de Comunicação</title>
+  <title>Régua de Comunicação — Albert</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #F4F1EC; color: #1a1d2e; font-size: 14px; }
 
-    body {
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      background: #F4F1EC;
-      color: #1a1d2e;
-      font-size: 14px;
-    }
-
-    header {
-      background: #E5014C;
-      color: #fff;
-      padding: 16px 28px;
-    }
+    header { background: #E5014C; color: #fff; padding: 16px 28px; }
     header h1 { font-size: 15px; font-weight: 600; letter-spacing: 0.01em; }
 
-    .legend {
-      display: flex;
-      gap: 24px;
-      padding: 16px 28px 12px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      font-size: 13px;
-      color: #333;
-      font-weight: 500;
-    }
+    .legend { display: flex; gap: 24px; padding: 16px 28px 12px; align-items: center; flex-wrap: wrap; }
+    .legend-item { display: flex; align-items: center; gap: 7px; font-size: 13px; color: #333; font-weight: 500; }
 
-    .table-wrap {
-      padding: 0 28px 40px;
-      overflow-x: auto;
-    }
+    .table-wrap { padding: 0 28px 40px; overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; background: #F4F1EC; min-width: 720px; }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background: #F4F1EC;
-      min-width: 720px;
-    }
-
-    thead tr th {
-      font-size: 12px;
-      font-weight: 500;
-      color: #888;
-      text-align: center;
-      padding: 10px 12px 6px;
-      border-bottom: 1.5px solid #d8d4cc;
-    }
+    thead tr th { font-size: 12px; font-weight: 500; color: #888; text-align: center; padding: 10px 12px 6px; border-bottom: 1.5px solid #d8d4cc; }
     thead tr th:first-child { text-align: left; }
-
     .col-head { font-size: 13px; font-weight: 600; color: #1a1d2e; display: block; }
     .col-sub  { font-size: 11px; color: #999; display: block; margin-top: 1px; }
 
-    tbody tr td {
-      padding: 14px 12px;
-      text-align: center;
-      border-bottom: 1px solid #dedad3;
-      vertical-align: middle;
-    }
+    tbody tr td { padding: 14px 12px; text-align: center; border-bottom: 1px solid #dedad3; vertical-align: middle; }
     tbody tr td:first-child { text-align: left; }
 
     .plan-name  { font-weight: 700; font-size: 14px; }
@@ -75,162 +30,70 @@
     .cycle-name { font-weight: 700; font-size: 14px; }
     .day-cell   { font-size: 13px; color: #555; }
 
-    .section-row td {
-      background: #ebe8e1;
-      font-size: 11px;
-      color: #888;
-      font-weight: 500;
-      padding: 8px 12px !important;
-      border-bottom: 1px solid #d8d4cc !important;
-      text-align: center;
-    }
+    .section-row td { background: #ebe8e1; font-size: 11px; color: #888; font-weight: 500; padding: 8px 12px !important; border-bottom: 1px solid #d8d4cc !important; text-align: center; }
     .section-row td:first-child { text-align: left; }
 
-    .icon-btn {
-      background: none;
-      border: none;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      transition: background 0.15s, transform 0.1s;
-    }
+    .icon-btn { background: none; border: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; transition: background 0.15s, transform 0.1s; }
     .icon-btn:hover { background: rgba(0,0,0,0.07); transform: scale(1.12); }
-
     .dash { color: #bbb; font-size: 18px; font-weight: 300; }
 
     /* MODAL */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.38);
-      z-index: 200;
-      align-items: center;
-      justify-content: center;
-    }
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 200; align-items: center; justify-content: center; }
     .modal-overlay.open { display: flex; }
+    .modal { background: #fff; border-radius: 14px; width: 560px; max-width: 96vw; max-height: 88vh; overflow-y: auto; box-shadow: 0 24px 64px rgba(0,0,0,0.22); animation: pop .16s ease; }
+    @keyframes pop { from { transform:scale(.93); opacity:0 } to { transform:scale(1); opacity:1 } }
 
-    .modal {
-      background: #fff;
-      border-radius: 14px;
-      width: 440px;
-      max-width: 94vw;
-      max-height: 90vh;
-      overflow-y: auto;
-      box-shadow: 0 24px 64px rgba(0,0,0,0.2);
-      animation: pop .16s ease;
-    }
-    @keyframes pop { from { transform: scale(.93); opacity:0 } to { transform:scale(1); opacity:1 } }
-
-    .modal-header {
-      padding: 16px 20px 14px;
-      border-bottom: 1px solid #f0ede8;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      position: sticky;
-      top: 0;
-      background: #fff;
-      z-index: 1;
-    }
+    .modal-header { padding: 16px 20px 14px; border-bottom: 1px solid #f0ede8; display: flex; align-items: center; gap: 10px; position: sticky; top: 0; background: #fff; z-index: 1; }
     .modal-title { font-size: 14px; font-weight: 700; flex: 1; }
-    .modal-close {
-      background: none; border: none; cursor: pointer;
-      color: #999; font-size: 20px; line-height: 1;
-      padding: 2px 6px; border-radius: 4px;
-    }
-    .modal-close:hover { background: #f5f0ea; color: #333; }
+    .modal-subject { font-size: 11px; color: #999; font-weight: 400; margin-top: 2px; }
+    .modal-close { display: none; }
+    .modal-close-overlay { position: fixed; top: 16px; right: 16px; z-index: 300; background: rgba(255,255,255,0.18); backdrop-filter: blur(8px); border: none; cursor: pointer; color: #fff; font-size: 18px; line-height: 1; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: background 0.15s; }
+    .modal-close-overlay:hover { background: rgba(255,255,255,0.32); }
 
-    .modal-meta {
-      padding: 10px 20px;
-      background: #faf8f5;
-      border-bottom: 1px solid #f0ede8;
-      font-size: 12px;
-      color: #666;
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
+    .modal-meta { padding: 10px 20px; background: #faf8f5; border-bottom: 1px solid #f0ede8; font-size: 12px; color: #666; display: flex; gap: 16px; flex-wrap: wrap; }
     .modal-meta strong { color: #1a1d2e; }
 
-    .modal-body { padding: 18px 20px 22px; }
+    .modal-body { padding: 0; }
 
-    /* Email */
-    .email-preview { border: 1px solid #e8e4dd; border-radius: 8px; overflow: hidden; }
-    .email-subject {
-      background: #f5f2ec; padding: 10px 14px;
-      font-weight: 600; font-size: 13px; color: #1a1d2e;
-      border-bottom: 1px solid #e8e4dd;
-    }
-    .email-body { padding: 14px; color: #333; line-height: 1.7; font-size: 13px; }
+    /* Email iframe */
+    .email-frame-wrap { width: 100%; }
+    .email-frame-wrap iframe { width: 100%; border: none; display: block; }
 
     /* WhatsApp */
-    .wpp-wrap { padding: 4px 0 4px 14px; }
-    .whatsapp-preview {
-      background: #e9f7ef;
-      border-radius: 0 10px 10px 10px;
-      padding: 13px 15px;
-      font-size: 13px;
-      color: #1a1d2e;
-      line-height: 1.65;
-      display: inline-block;
-      max-width: 100%;
-      position: relative;
-    }
-    .whatsapp-preview::before {
-      content: '';
-      position: absolute;
-      left: -7px; top: 0;
-      border: 7px solid transparent;
-      border-right-color: #e9f7ef;
-      border-top-color: #e9f7ef;
-      border-left: 0;
-      border-top-left-radius: 3px;
-    }
+    .wpp-wrap { padding: 20px 20px 20px 28px; }
+    .whatsapp-bubble { background: #e9f7ef; border-radius: 0 10px 10px 10px; padding: 13px 15px; font-size: 13px; color: #1a1d2e; line-height: 1.7; display: inline-block; max-width: 100%; position: relative; }
+    .whatsapp-bubble::before { content:''; position:absolute; left:-7px; top:0; border:7px solid transparent; border-right-color:#e9f7ef; border-top-color:#e9f7ef; border-left:0; }
+    .wpp-buttons { margin-top: 8px; border-top: 1px solid #d0eeda; }
+    .wpp-btn { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 14px; font-size: 13px; color: #128C7E; font-weight: 600; border-top: 1px solid #d0eeda; }
     .whatsapp-time { font-size: 10px; color: #999; text-align: right; margin-top: 6px; }
 
-    /* Push */
-    .push-preview {
-      background: #1a1d2e;
-      border-radius: 12px;
-      padding: 14px 16px;
-      color: #fff;
-    }
-    .push-app   { font-size: 10px; color: #aaa; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.07em; }
-    .push-title { font-weight: 700; font-size: 13px; margin-bottom: 5px; }
-    .push-body  { color: #ccc; line-height: 1.55; font-size: 12px; }
+    /* Push — estilo iOS */
+    .push-wrap { padding: 20px; background: transparent; }
+    .push-phone-bg { background: linear-gradient(135deg, #1c2a3a 0%, #0f1923 100%); border-radius: 16px; padding: 24px 20px; display: flex; align-items: center; justify-content: center; }
+    .push-notification { background: rgba(255,255,255,0.13); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-radius: 16px; padding: 12px 14px; width: 100%; max-width: 360px; display: flex; align-items: flex-start; gap: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.1); }
+    .push-app-icon { width: 40px; height: 40px; border-radius: 10px; background: #E5004C; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 900; color: #fff; font-family: Arial, sans-serif; position: relative; }
+    .push-badge { position: absolute; top: -5px; right: -5px; background: #555; color: #fff; border-radius: 50%; width: 16px; height: 16px; font-size: 9px; font-weight: 700; display: flex; align-items: center; justify-content: center; border: 1.5px solid rgba(255,255,255,0.15); }
+    .push-content { flex: 1; min-width: 0; }
+    .push-app-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px; }
+    .push-app-name { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.06em; }
+    .push-time { font-size: 11px; color: rgba(255,255,255,0.4); }
+    .push-title { font-weight: 700; font-size: 13px; color: #fff; margin-bottom: 3px; line-height: 1.3; }
+    .push-body  { color: rgba(255,255,255,0.7); line-height: 1.45; font-size: 13px; }
 
-    .vars-section { margin-top: 16px; }
+    .vars-section { margin: 16px 20px 20px; }
     .vars-label { font-size: 11px; color: #999; margin-bottom: 7px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
     .vars { display: flex; flex-wrap: wrap; gap: 6px; }
-    .var-tag {
-      font-size: 10px; font-weight: 600;
-      padding: 3px 9px; border-radius: 4px;
-      font-family: 'Courier New', monospace;
-    }
+    .var-tag { font-size: 10px; font-weight: 600; padding: 3px 9px; border-radius: 4px; font-family: 'Courier New', monospace; }
     .var-email { background: #eef2ff; color: #4f8ef7; }
     .var-wpp   { background: #e6f9ee; color: #25a244; }
     .var-push  { background: #2d3150; color: #a0aaff; }
 
-    .trigger-row {
-      margin-top: 13px;
-      font-size: 12px;
-      color: #888;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
+    .trigger-row { margin: 0 20px 20px; font-size: 12px; color: #888; display: flex; align-items: center; gap: 6px; }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Régua de Comunicação</h1>
-</header>
+<header><h1>Régua de Comunicação — Albert</h1></header>
 
 <div class="legend">
   <div class="legend-item">
@@ -246,7 +109,7 @@
     Push
   </div>
   <div class="legend-item" style="color:#bbb;">
-    <span style="font-size:18px;font-weight:300;line-height:1;color:#bbb;">—</span>
+    <span style="font-size:18px;font-weight:300;color:#bbb;">—</span>
     Não incluso
   </div>
 </div>
@@ -266,93 +129,66 @@
       </tr>
     </thead>
     <tbody>
-
       <tr>
         <td><div class="plan-name">Pré-cadastro</div><div class="plan-sub">todos os planos</div></td>
-        <td><button class="icon-btn" onclick="openModal('wpp','pre-d0')">WPP_ICON</button></td>
-        <td><span class="dash">—</span></td>
-        <td><span class="dash">—</span></td>
-        <td><span class="dash">—</span></td>
-        <td><span class="dash">—</span></td>
-        <td><span class="dash">—</span></td>
-        <td><button class="icon-btn" onclick="openModal('wpp','pre-p6')">WPP_ICON</button></td>
+        <td><button class="icon-btn" onclick="openModal('wpp','pre-d0')">__WPP__</button></td>
+        <td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="dash">—</span></td>
+        <td><button class="icon-btn" onclick="openModal('wpp','pre-p6')">__WPP__</button></td>
       </tr>
-
       <tr>
         <td><div class="plan-name">Essencial</div></td>
-        <td><button class="icon-btn" onclick="openModal('wpp','ess-d0')">WPP_ICON</button></td>
+        <td><button class="icon-btn" onclick="openModal('wpp','ess-d0')">__WPP__</button></td>
         <td><span class="dash">—</span></td>
-        <td><button class="icon-btn" onclick="openModal('email','ess-p2')">EMAIL_ICON</button></td>
+        <td><button class="icon-btn" onclick="openModal('email','ess-p2')">__EMAIL__</button></td>
         <td><span class="dash">—</span></td>
-        <td><button class="icon-btn" onclick="openModal('push','ess-p4')">PUSH_ICON</button></td>
+        <td><button class="icon-btn" onclick="openModal('push','ess-p4')">__PUSH__</button></td>
         <td><span class="dash">—</span></td>
-        <td><button class="icon-btn" onclick="openModal('email','ess-p6')">EMAIL_ICON</button></td>
+        <td><button class="icon-btn" onclick="openModal('email','ess-p6')">__EMAIL__</button></td>
       </tr>
-
       <tr>
         <td><div class="plan-name">Avançado</div></td>
-        <td><button class="icon-btn" onclick="openModal('wpp','ava-d0')">WPP_ICON</button></td>
+        <td><button class="icon-btn" onclick="openModal('wpp','ava-d0')">__WPP__</button></td>
         <td><span class="dash">—</span></td>
-        <td><button class="icon-btn" onclick="openModal('email','ava-p2')">EMAIL_ICON</button></td>
-        <td><button class="icon-btn" onclick="openModal('email','ava-p3')">EMAIL_ICON</button></td>
-        <td><button class="icon-btn" onclick="openModal('push','ava-p4')">PUSH_ICON</button></td>
+        <td><button class="icon-btn" onclick="openModal('email','ava-p2')">__EMAIL__</button></td>
+        <td><button class="icon-btn" onclick="openModal('email','ava-p3')">__EMAIL__</button></td>
+        <td><button class="icon-btn" onclick="openModal('push','ava-p4')">__PUSH__</button></td>
         <td><span class="dash">—</span></td>
-        <td><button class="icon-btn" onclick="openModal('email','ava-p6')">EMAIL_ICON</button></td>
+        <td><button class="icon-btn" onclick="openModal('email','ava-p6')">__EMAIL__</button></td>
       </tr>
-
       <tr>
         <td><div class="plan-name">Profissional</div></td>
-        <td><button class="icon-btn" onclick="openModal('wpp','pro-d0')">WPP_ICON</button></td>
-        <td><button class="icon-btn" onclick="openModal('email','pro-p1')">EMAIL_ICON</button></td>
-        <td><button class="icon-btn" onclick="openModal('push','pro-p2')">PUSH_ICON</button></td>
-        <td><button class="icon-btn" onclick="openModal('email','pro-p3')">EMAIL_ICON</button></td>
-        <td><button class="icon-btn" onclick="openModal('email','pro-p4')">EMAIL_ICON</button></td>
-        <td><button class="icon-btn" onclick="openModal('wpp','pro-p5')">WPP_ICON</button></td>
-        <td><button class="icon-btn" onclick="openModal('email','pro-p6')">EMAIL_ICON</button></td>
+        <td><button class="icon-btn" onclick="openModal('wpp','pro-d0')">__WPP__</button></td>
+        <td><button class="icon-btn" onclick="openModal('email','pro-p1')">__EMAIL__</button></td>
+        <td><button class="icon-btn" onclick="openModal('push','pro-p2')">__PUSH__</button></td>
+        <td><button class="icon-btn" onclick="openModal('email','pro-p3')">__EMAIL__</button></td>
+        <td><button class="icon-btn" onclick="openModal('email','pro-p4')">__EMAIL__</button></td>
+        <td><button class="icon-btn" onclick="openModal('wpp','pro-p5')">__WPP__</button></td>
+        <td><button class="icon-btn" onclick="openModal('email','pro-p6')">__EMAIL__</button></td>
       </tr>
 
       <tr class="section-row">
-        <td>Ciclo</td>
-        <td>D0</td><td>P1 — 10%</td><td>P2 — 25%</td>
-        <td>P3 — 50%</td><td>P4 — 75%</td><td>P5 — 90%</td><td>P6 — 97%</td>
+        <td>Ciclo</td><td>D0</td><td>P1 — 10%</td><td>P2 — 25%</td><td>P3 — 50%</td><td>P4 — 75%</td><td>P5 — 90%</td><td>P6 — 97%</td>
       </tr>
-      <tr>
-        <td><div class="cycle-name">30 dias</div></td>
-        <td class="day-cell">dia 0</td><td class="day-cell">dia 3</td><td class="day-cell">dia 8</td>
-        <td class="day-cell">dia 15</td><td class="day-cell">dia 23</td><td class="day-cell">dia 27</td><td class="day-cell">dia 29</td>
-      </tr>
-      <tr>
-        <td><div class="cycle-name">60 dias</div></td>
-        <td class="day-cell">dia 0</td><td class="day-cell">dia 6</td><td class="day-cell">dia 15</td>
-        <td class="day-cell">dia 30</td><td class="day-cell">dia 45</td><td class="day-cell">dia 54</td><td class="day-cell">dia 58</td>
-      </tr>
-      <tr>
-        <td><div class="cycle-name">90 dias</div></td>
-        <td class="day-cell">dia 0</td><td class="day-cell">dia 9</td><td class="day-cell">dia 23</td>
-        <td class="day-cell">dia 45</td><td class="day-cell">dia 68</td><td class="day-cell">dia 81</td><td class="day-cell">dia 87</td>
-      </tr>
-      <tr>
-        <td><div class="cycle-name">180 dias</div></td>
-        <td class="day-cell">dia 0</td><td class="day-cell">dia 18</td><td class="day-cell">dia 45</td>
-        <td class="day-cell">dia 90</td><td class="day-cell">dia 135</td><td class="day-cell">dia 162</td><td class="day-cell">dia 175</td>
-      </tr>
-      <tr>
-        <td><div class="cycle-name">360 dias</div></td>
-        <td class="day-cell">dia 0</td><td class="day-cell">dia 36</td><td class="day-cell">dia 90</td>
-        <td class="day-cell">dia 180</td><td class="day-cell">dia 270</td><td class="day-cell">dia 324</td><td class="day-cell">dia 349</td>
-      </tr>
-
+      <tr><td><div class="cycle-name">30 dias</div></td><td class="day-cell">dia 0</td><td class="day-cell">dia 3</td><td class="day-cell">dia 8</td><td class="day-cell">dia 15</td><td class="day-cell">dia 23</td><td class="day-cell">dia 27</td><td class="day-cell">dia 29</td></tr>
+      <tr><td><div class="cycle-name">60 dias</div></td><td class="day-cell">dia 0</td><td class="day-cell">dia 6</td><td class="day-cell">dia 15</td><td class="day-cell">dia 30</td><td class="day-cell">dia 45</td><td class="day-cell">dia 54</td><td class="day-cell">dia 58</td></tr>
+      <tr><td><div class="cycle-name">90 dias</div></td><td class="day-cell">dia 0</td><td class="day-cell">dia 9</td><td class="day-cell">dia 23</td><td class="day-cell">dia 45</td><td class="day-cell">dia 68</td><td class="day-cell">dia 81</td><td class="day-cell">dia 87</td></tr>
+      <tr><td><div class="cycle-name">180 dias</div></td><td class="day-cell">dia 0</td><td class="day-cell">dia 18</td><td class="day-cell">dia 45</td><td class="day-cell">dia 90</td><td class="day-cell">dia 135</td><td class="day-cell">dia 162</td><td class="day-cell">dia 175</td></tr>
+      <tr><td><div class="cycle-name">360 dias</div></td><td class="day-cell">dia 0</td><td class="day-cell">dia 36</td><td class="day-cell">dia 90</td><td class="day-cell">dia 180</td><td class="day-cell">dia 270</td><td class="day-cell">dia 324</td><td class="day-cell">dia 349</td></tr>
     </tbody>
   </table>
 </div>
 
 <!-- MODAL -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeOnOverlay(event)">
+  <button class="modal-close-overlay" onclick="closeModal()">✕</button>
   <div class="modal">
     <div class="modal-header">
       <div id="modalIcon"></div>
-      <div class="modal-title" id="modalTitle"></div>
-      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div>
+        <div class="modal-title" id="modalTitle"></div>
+        <div class="modal-subject" id="modalSubject"></div>
+      </div>
+
     </div>
     <div class="modal-meta" id="modalMeta"></div>
     <div class="modal-body" id="modalBody"></div>
@@ -364,61 +200,120 @@ const WPP_SVG = `<svg width="22" height="22" viewBox="0 0 24 24"><circle cx="12"
 const EMAIL_SVG = `<svg width="22" height="17" viewBox="0 0 24 18"><rect width="24" height="18" rx="3" fill="#4f8ef7"/><path d="M0 4l12 8 12-8" stroke="#fff" stroke-width="1.5" fill="none"/></svg>`;
 const PUSH_SVG = `<svg width="18" height="22" viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6V11c0-3.1-2.1-5.6-5-6.3V4c0-.6-.4-1-1-1s-1 .4-1 1v.7C8.1 5.4 6 7.9 6 11v5l-2 2v1h16v-1l-2-2z" fill="#E5014C"/></svg>`;
 
-// replace placeholders
-document.querySelectorAll('.icon-btn').forEach(btn => {
-  btn.innerHTML = btn.innerHTML
-    .replace('WPP_ICON', WPP_SVG)
-    .replace('EMAIL_ICON', EMAIL_SVG)
-    .replace('PUSH_ICON', PUSH_SVG);
+document.querySelectorAll('.icon-btn').forEach(b => {
+  b.innerHTML = b.innerHTML.replace('__WPP__', WPP_SVG).replace('__EMAIL__', EMAIL_SVG).replace('__PUSH__', PUSH_SVG);
 });
 
+// ── EMAIL BODIES ──────────────────────────────────────────────────────────────
+const EMAIL_P1 = `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet"/><style>*{margin:0;padding:0;box-sizing:border-box}body{background-color:#F9EEF2;font-family:'Inter Tight',Arial,sans-serif;-webkit-font-smoothing:antialiased;color:#1A1A1A}a{color:inherit;text-decoration:none}img{display:block;max-width:100%}.email-wrapper{background-color:#F9EEF2;padding:40px 16px 60px}.email-container{max-width:600px;margin:0 auto;background-color:#FFFFFF;border-radius:4px;overflow:hidden}.header{background-color:#E5004C;padding:36px 48px 32px;display:flex;align-items:center;justify-content:space-between}.header-logo{font-size:32px;font-weight:800;color:#F5F0EB;letter-spacing:-.5px;line-height:1}.header-tag{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,240,235,.55)}.hero{background-color:#E5004C;padding:0 48px 52px;text-align:center;border-bottom:1px solid rgba(255,255,255,.15)}.hero-divider{width:32px;height:2px;background-color:rgba(255,255,255,.35);margin:0 auto 28px}.hero-eyebrow{font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(245,240,235,.6);margin-bottom:20px}.hero-title{font-size:48px;font-weight:800;color:#F5F0EB;line-height:1.05;letter-spacing:-1px;margin-bottom:10px}.hero-title span{color:#FFF}.hero-subtitle{font-size:13px;font-weight:400;color:rgba(245,240,235,.65);letter-spacing:.08em}.body-section{padding:44px 48px 0}.greeting{font-size:15px;font-weight:600;color:#1A1A1A;margin-bottom:20px}.body-text{font-size:15px;font-weight:400;color:#2E2E2E;line-height:1.7;margin-bottom:20px}.body-text strong{color:#1A1A1A;font-weight:700}.info-block{background-color:#FDF5F8;border-radius:4px;padding:24px 28px;margin:28px 0}.info-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(229,0,76,.1)}.info-row:last-child{border-bottom:none}.info-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#9A9A9A}.info-value{font-size:15px;font-weight:700;color:#1A1A1A}.info-value.highlight{color:#E5004C}.cta-section{padding:8px 48px 48px;text-align:center}.cta-button{display:inline-block;background-color:#E5004C;color:#FFF;font-family:'Inter Tight',Arial,sans-serif;font-size:14px;font-weight:700;letter-spacing:.04em;padding:16px 40px;border-radius:100px;text-decoration:none;margin-top:16px}.post-cta-highlight{border-left:3px solid #E5004C;padding:16px 20px;margin:0 48px 32px;background-color:#FDF5F8}.post-cta-highlight p{font-size:14px;font-weight:400;color:#2E2E2E;line-height:1.7}.post-cta-highlight strong{color:#E5004C;font-weight:700}.email-closing{padding:24px 48px;text-align:left;border-top:1px solid #F4F1EC}.email-closing p{font-size:13px;color:#6B6B6B}.footer-banner{background-color:#E5004C;padding:28px 36px 24px}.footer-inner{display:flex;align-items:center;justify-content:center}.fb-logo{font-size:28px;font-weight:800;color:#F5F0EB;letter-spacing:-.5px;line-height:1;white-space:nowrap;flex-shrink:0}.fb-sep{width:1px;height:40px;background-color:rgba(245,240,235,.35);margin:0 20px;flex-shrink:0}.fb-tags{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.fb-tag{border:1.5px solid rgba(245,240,235,.45);border-radius:3px;padding:5px 12px;font-size:12px;font-weight:700;color:#F5F0EB;white-space:nowrap}.fb-tagline{margin-top:12px;text-align:center;font-size:12px;color:rgba(245,240,235,.7)}</style></head><body><div class="email-wrapper"><div class="email-container"><div class="header"><div class="header-logo">Albert</div><div class="header-tag">Cashback</div></div><div class="hero"><div class="hero-divider"></div><p class="hero-eyebrow">-- Seu beneficio disponivel --</p><h1 class="hero-title">Você tem cashback<br/>esperando por <span>você.</span></h1><p class="hero-subtitle">Cashback &middot; Promoções &middot; Benefícios exclusivos</p></div><div class="body-section"><p class="greeting">Olá,</p><p class="body-text">Seu cashback recebido em <strong>{{parceiro}}</strong> está disponível para uso. Confira os detalhes:</p><div class="info-block"><div class="info-row"><span class="info-label">Valor disponível</span><span class="info-value highlight">R$ {{valor_cashback}}</span></div><div class="info-row"><span class="info-label">Válido até</span><span class="info-value">{{data_vencimento}}</span></div></div><p class="body-text">Use seu cashback enquanto ele está ativo e aproveite — a próxima compra também gera cashback!</p></div><div class="cta-section"><a href="javascript:void(0)" style="cursor:default;pointer-events:none;" class="cta-button" style="color:#FFF!important">Usar meu cashback &rarr;</a></div><div class="post-cta-highlight"><p>Para utilizar seu saldo total de cashback, a nova compra precisa ser de pelo menos <strong>R$ {{compra_minima}}</strong>.</p></div><div class="email-closing"><p>Qualquer dúvida, estamos à disposição.</p><p style="margin-top:8px;font-size:14px;font-weight:700;color:#1A1A1A">Time Albert ❤️</p></div><div class="footer-banner"><div class="footer-inner"><div class="fb-logo">Albert</div><div class="fb-sep"></div><div class="fb-tags"><div class="fb-tag">+cashback</div><div class="fb-tag">+promoções</div><div class="fb-tag">+benefícios</div></div></div><div class="fb-tagline">Economize de verdade em cada compra.</div></div></div></div></body></html>`;
+
+const EMAIL_P2 = `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet"/><style>*{margin:0;padding:0;box-sizing:border-box}body{background-color:#F9EEF2;font-family:'Inter Tight',Arial,sans-serif;-webkit-font-smoothing:antialiased;color:#1A1A1A}a{color:inherit;text-decoration:none}img{display:block;max-width:100%}.email-wrapper{background-color:#F9EEF2;padding:40px 16px 60px}.email-container{max-width:600px;margin:0 auto;background-color:#FFF;border-radius:4px;overflow:hidden}.header{background-color:#E5004C;padding:36px 48px 32px;display:flex;align-items:center;justify-content:space-between}.header-logo{font-size:32px;font-weight:800;color:#F5F0EB;letter-spacing:-.5px;line-height:1}.header-tag{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,240,235,.55)}.hero{background-color:#E5004C;padding:0 48px 52px;text-align:center;border-bottom:1px solid rgba(255,255,255,.15)}.hero-divider{width:32px;height:2px;background-color:rgba(255,255,255,.35);margin:0 auto 28px}.hero-eyebrow{font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(245,240,235,.6);margin-bottom:20px}.hero-title{font-size:48px;font-weight:800;color:#F5F0EB;line-height:1.05;letter-spacing:-1px;margin-bottom:16px}.hero-title span{color:#FFF}.hero-subtitle{font-size:13px;font-weight:400;color:rgba(245,240,235,.75);letter-spacing:.06em}.body-section{padding:44px 48px 0}.greeting{font-size:15px;font-weight:600;color:#1A1A1A;margin-bottom:20px}.body-text{font-size:15px;font-weight:400;color:#2E2E2E;line-height:1.7;margin-bottom:20px}.body-text strong{color:#1A1A1A;font-weight:700}.info-block{background-color:#FDF5F8;border-radius:4px;padding:24px 28px;margin:28px 0}.info-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(229,0,76,.1)}.info-row:last-child{border-bottom:none}.info-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#9A9A9A}.info-value{font-size:15px;font-weight:700;color:#1A1A1A}.info-value.highlight{color:#E5004C}.cta-section{padding:8px 48px 48px;text-align:center}.cta-button{display:inline-block;background-color:#E5004C;color:#FFF!important;font-family:'Inter Tight',Arial,sans-serif;font-size:14px;font-weight:700;letter-spacing:.04em;padding:16px 40px;border-radius:100px;text-decoration:none!important;margin-top:16px}.email-closing{padding:24px 48px 40px;border-top:1px solid #F4F1EC}.email-closing p{font-size:13px;color:#6B6B6B;margin-bottom:8px}.email-closing strong{font-size:14px;font-weight:700;color:#1A1A1A}.footer-banner{background-color:#E5004C;padding:28px 36px 24px}.footer-inner{display:flex;align-items:center;justify-content:center}.fb-logo{font-size:28px;font-weight:800;color:#F5F0EB;letter-spacing:-.5px;line-height:1;white-space:nowrap;flex-shrink:0}.fb-sep{width:1px;height:40px;background-color:rgba(245,240,235,.35);margin:0 20px;flex-shrink:0}.fb-tags{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.fb-tag{border:1.5px solid rgba(245,240,235,.45);border-radius:3px;padding:5px 12px;font-size:12px;font-weight:700;color:#F5F0EB;white-space:nowrap}.fb-tagline{margin-top:12px;text-align:center;font-size:12px;color:rgba(245,240,235,.7)}</style></head><body><div class="email-wrapper"><div class="email-container"><div class="header"><div class="header-logo">Albert</div><div class="header-tag">Cashback</div></div><div class="hero"><div class="hero-divider"></div><p class="hero-eyebrow">— Seu benefício disponível —</p><h1 class="hero-title">Você tem cashback<br/>esperando por <span>você.</span></h1><p class="hero-subtitle">Cashback &middot; Promoções &middot; Benefícios exclusivos</p></div><div class="body-section"><p class="greeting">Olá!</p><p class="body-text">Seu cashback já está na carteira. Agora é só aproveitar.</p><p class="body-text">Sempre que você utilizar seu saldo em uma nova compra, continua economizando e ainda pode receber um novo cashback.</p><p class="body-text">Confira seus dados:</p><div class="info-block"><div class="info-row"><span class="info-label">Parceiro</span><span class="info-value">{{parceiro}}</span></div><div class="info-row"><span class="info-label">Valor</span><span class="info-value">R$ {{valor_cashback}}</span></div><div class="info-row"><span class="info-label">Validade</span><span class="info-value">{{data_vencimento}}</span></div><div class="info-row"><span class="info-label">Compra mínima</span><span class="info-value">R$ {{compra_minima}}</span></div></div><p class="body-text">Abra o app, confira sua carteira e aproveite seu benefício.</p></div><div class="cta-section"><a href="javascript:void(0)" style="cursor:default;pointer-events:none;" class="cta-button" style="color:#FFF!important">Ver meu cashback →</a></div><div class="email-closing"><p>Qualquer dúvida, estamos à disposição.</p><strong>Time Albert ❤️</strong></div><div class="footer-banner"><div class="footer-inner"><div class="fb-logo">Albert</div><div class="fb-sep"></div><div class="fb-tags"><div class="fb-tag">+cashback</div><div class="fb-tag">+promoções</div><div class="fb-tag">+benefícios</div></div></div><div class="fb-tagline">Economize de verdade em cada compra.</div></div></div></div></body></html>`;
+
+const EMAIL_P3 = `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet"/><style>*{margin:0;padding:0;box-sizing:border-box}body{background-color:#F9EEF2;font-family:'Inter Tight',Arial,sans-serif;-webkit-font-smoothing:antialiased;color:#1A1A1A}a{color:inherit;text-decoration:none}img{display:block;max-width:100%}.email-wrapper{background-color:#F9EEF2;padding:40px 16px 60px}.email-container{max-width:600px;margin:0 auto;background-color:#FFF;border-radius:4px;overflow:hidden}.header{background-color:#E5004C;padding:36px 48px 32px;display:flex;align-items:center;justify-content:space-between}.header-logo{font-size:32px;font-weight:800;color:#F5F0EB;letter-spacing:-.5px;line-height:1}.header-tag{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,240,235,.55)}.hero{background-color:#E5004C;padding:0 48px 52px;text-align:center;border-bottom:1px solid rgba(255,255,255,.15)}.hero-divider{width:32px;height:2px;background-color:rgba(255,255,255,.35);margin:0 auto 28px}.hero-eyebrow{font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(245,240,235,.6);margin-bottom:20px}.hero-title{font-size:48px;font-weight:800;color:#F5F0EB;line-height:1.05;letter-spacing:-1px;margin-bottom:16px}.hero-title span{color:#FFF}.hero-subtitle{font-size:13px;font-weight:400;color:rgba(245,240,235,.75);letter-spacing:.06em}.body-section{padding:44px 48px 0}.greeting{font-size:15px;font-weight:600;color:#1A1A1A;margin-bottom:20px}.body-text{font-size:15px;font-weight:400;color:#2E2E2E;line-height:1.7;margin-bottom:20px}.body-text strong{color:#1A1A1A;font-weight:700}.info-block{background-color:#FDF5F8;border-radius:4px;padding:24px 28px;margin:28px 0}.info-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(229,0,76,.1)}.info-row:last-child{border-bottom:none}.info-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#9A9A9A}.info-value{font-size:15px;font-weight:700;color:#1A1A1A}.info-value.highlight{color:#E5004C}.cta-section{padding:8px 48px 48px;text-align:center}.cta-button{display:inline-block;background-color:#E5004C;color:#FFF!important;font-family:'Inter Tight',Arial,sans-serif;font-size:14px;font-weight:700;letter-spacing:.04em;padding:16px 40px;border-radius:100px;text-decoration:none!important;margin-top:16px}.email-closing{padding:24px 48px 40px;text-align:left;border-top:1px solid #F4F1EC}.email-closing p{font-size:13px;color:#6B6B6B}.footer-banner{background-color:#E5004C;padding:28px 36px 24px}.footer-inner{display:flex;align-items:center;justify-content:center}.fb-logo{font-size:28px;font-weight:800;color:#F5F0EB;letter-spacing:-.5px;line-height:1;white-space:nowrap;flex-shrink:0}.fb-sep{width:1px;height:40px;background-color:rgba(245,240,235,.35);margin:0 20px;flex-shrink:0}.fb-tags{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.fb-tag{border:1.5px solid rgba(245,240,235,.45);border-radius:3px;padding:5px 12px;font-size:12px;font-weight:700;color:#F5F0EB;white-space:nowrap}.fb-tagline{margin-top:12px;text-align:center;font-size:12px;color:rgba(245,240,235,.7)}</style></head><body><div class="email-wrapper"><div class="email-container"><div class="header"><div class="header-logo">Albert</div><div class="header-tag">Cashback</div></div><div class="hero"><div class="hero-divider"></div><p class="hero-eyebrow">— Seu saldo disponível —</p><h1 class="hero-title">Seu cashback foi feito<br/>para ser <span>usado.</span></h1><p class="hero-subtitle">Cashback &middot; Promoções &middot; Benefícios exclusivos</p></div><div class="body-section"><p class="greeting">Oi!</p><p class="body-text">Seu cashback foi feito para ser usado. Quanto antes você aproveitar esse saldo, mais rápido poderá voltar a receber cashback nas próximas compras.</p><p class="body-text">Confira seu saldo:</p><div class="info-block"><div class="info-row"><span class="info-label">Parceiro</span><span class="info-value">{{parceiro}}</span></div><div class="info-row"><span class="info-label">Valor</span><span class="info-value highlight">R$ {{valor_cashback}}</span></div><div class="info-row"><span class="info-label">Válido até</span><span class="info-value">{{data_vencimento}}</span></div><div class="info-row"><span class="info-label">Compra mínima</span><span class="info-value">R$ {{compra_minima}}</span></div></div><p class="body-text">Entre no app, use seu cashback e continue aproveitando todos os benefícios do Albert.</p></div><div class="cta-section"><a href="javascript:void(0)" style="cursor:default;pointer-events:none;" class="cta-button" style="color:#FFF!important">Ver meu cashback agora &rarr;</a></div><div class="email-closing"><p>Qualquer dúvida, estamos à disposição.</p><p style="margin-top:8px;font-size:14px;font-weight:700;color:#1A1A1A">Time Albert ❤️</p></div><div class="footer-banner"><div class="footer-inner"><div class="fb-logo">Albert</div><div class="fb-sep"></div><div class="fb-tags"><div class="fb-tag">+cashback</div><div class="fb-tag">+promoções</div><div class="fb-tag">+benefícios</div></div></div><div class="fb-tagline">Economize de verdade em cada compra.</div></div></div></div></body></html>`;
+
+const EMAIL_P4 = `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet"/><style>*{margin:0;padding:0;box-sizing:border-box}body{background-color:#F9EEF2;font-family:'Inter Tight',Arial,sans-serif;-webkit-font-smoothing:antialiased;color:#1A1A1A}a{color:inherit;text-decoration:none}img{display:block;max-width:100%}.email-wrapper{background-color:#F9EEF2;padding:40px 16px 60px}.email-container{max-width:600px;margin:0 auto;background-color:#FFF;border-radius:4px;overflow:hidden}.header{background-color:#E5004C;padding:36px 48px 32px;display:flex;align-items:center;justify-content:space-between}.header-logo{font-size:32px;font-weight:800;color:#F5F0EB;letter-spacing:-.5px;line-height:1}.header-tag{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,240,235,.55)}.hero{background-color:#E5004C;padding:0 48px 52px;text-align:center;border-bottom:1px solid rgba(255,255,255,.15)}.hero-divider{width:32px;height:2px;background-color:rgba(255,255,255,.35);margin:0 auto 28px}.hero-eyebrow{font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(245,240,235,.6);margin-bottom:20px}.hero-title{font-size:48px;font-weight:800;color:#F5F0EB;line-height:1.05;letter-spacing:-1px;margin-bottom:16px}.hero-title span{color:#FFF}.hero-subtitle{font-size:13px;font-weight:400;color:rgba(245,240,235,.75);letter-spacing:.06em}.body-section{padding:44px 48px 0}.greeting{font-size:15px;font-weight:600;color:#1A1A1A;margin-bottom:20px}.body-text{font-size:15px;font-weight:400;color:#2E2E2E;line-height:1.7;margin-bottom:20px}.body-text strong{color:#1A1A1A;font-weight:700}.info-block{background-color:#FDF5F8;border-radius:4px;padding:24px 28px;margin:28px 0}.info-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(229,0,76,.1)}.info-row:last-child{border-bottom:none}.info-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#9A9A9A}.info-value{font-size:15px;font-weight:700;color:#1A1A1A}.info-value.highlight{color:#E5004C}.cta-section{padding:8px 48px 48px;text-align:center}.cta-button{display:inline-block;background-color:#E5004C;color:#FFF!important;font-family:'Inter Tight',Arial,sans-serif;font-size:14px;font-weight:700;letter-spacing:.04em;padding:16px 40px;border-radius:100px;text-decoration:none!important;margin-top:16px}.email-closing{padding:24px 48px 40px;text-align:left;border-top:1px solid #F4F1EC}.email-closing p{font-size:13px;color:#6B6B6B}.footer-banner{background-color:#E5004C;padding:28px 36px 24px}.footer-inner{display:flex;align-items:center;justify-content:center}.fb-logo{font-size:28px;font-weight:800;color:#F5F0EB;letter-spacing:-.5px;line-height:1;white-space:nowrap;flex-shrink:0}.fb-sep{width:1px;height:40px;background-color:rgba(245,240,235,.35);margin:0 20px;flex-shrink:0}.fb-tags{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.fb-tag{border:1.5px solid rgba(245,240,235,.45);border-radius:3px;padding:5px 12px;font-size:12px;font-weight:700;color:#F5F0EB;white-space:nowrap}.fb-tagline{margin-top:12px;text-align:center;font-size:12px;color:rgba(245,240,235,.7)}</style></head><body><div class="email-wrapper"><div class="email-container"><div class="header"><div class="header-logo">Albert</div><div class="header-tag">Cashback</div></div><div class="hero"><div class="hero-divider"></div><p class="hero-eyebrow">— Ainda dá tempo —</p><h1 class="hero-title">Seu cashback<br/>vence <span>em breve.</span></h1><p class="hero-subtitle">Cashback &middot; Promoções &middot; Benefícios exclusivos</p></div><div class="body-section"><p class="greeting">Oi,</p><p class="body-text">O cashback recebido em <strong>{{parceiro}}</strong> ainda está disponível, mas por pouco tempo.</p><p class="body-text">Confira:</p><div class="info-block"><div class="info-row"><span class="info-label">Valor</span><span class="info-value highlight">R$ {{valor_cashback}}</span></div><div class="info-row"><span class="info-label">Válido até</span><span class="info-value">{{data_vencimento}}</span></div><div class="info-row"><span class="info-label">Compra mínima</span><span class="info-value">R$ {{compra_minima}}</span></div></div><p class="body-text">Ainda dá tempo de aproveitar. E tem mais: ao fazer uma nova compra, você também pode receber um novo cashback.</p><p class="body-text">Obrigado por estar com a gente!</p></div><div class="cta-section"><a href="javascript:void(0)" style="cursor:default;pointer-events:none;" class="cta-button" style="color:#FFF!important">Ver meu cashback agora &rarr;</a></div><div class="email-closing"><p>Qualquer dúvida, estamos à disposição.</p><p style="margin-top:8px;font-size:14px;font-weight:700;color:#1A1A1A">Time Albert ❤️</p></div><div class="footer-banner"><div class="footer-inner"><div class="fb-logo">Albert</div><div class="fb-sep"></div><div class="fb-tags"><div class="fb-tag">+cashback</div><div class="fb-tag">+promoções</div><div class="fb-tag">+benefícios</div></div></div><div class="fb-tagline">Economize de verdade em cada compra.</div></div></div></div></body></html>`;
+
+const EMAIL_P6 = `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet"/><style>*{margin:0;padding:0;box-sizing:border-box}body{background-color:#F9EEF2;font-family:'Inter Tight',Arial,sans-serif;-webkit-font-smoothing:antialiased;color:#1A1A1A}a{color:inherit;text-decoration:none}img{display:block;max-width:100%}.email-wrapper{background-color:#F9EEF2;padding:40px 16px 60px}.email-container{max-width:600px;margin:0 auto;background-color:#FFF;border-radius:4px;overflow:hidden}.header{background-color:#E5004C;padding:36px 48px 32px;display:flex;align-items:center;justify-content:space-between}.header-logo{font-size:32px;font-weight:800;color:#F5F0EB;letter-spacing:-.5px;line-height:1}.header-tag{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,240,235,.55)}.hero{background-color:#E5004C;padding:0 48px 52px;text-align:center;border-bottom:1px solid rgba(255,255,255,.15)}.hero-divider{width:32px;height:2px;background-color:rgba(255,255,255,.35);margin:0 auto 28px}.hero-eyebrow{font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(245,240,235,.6);margin-bottom:20px}.hero-title{font-size:48px;font-weight:800;color:#F5F0EB;line-height:1.05;letter-spacing:-1px;margin-bottom:16px}.hero-title span{color:#FFF}.hero-subtitle{font-size:13px;font-weight:400;color:rgba(245,240,235,.75);letter-spacing:.06em}.body-section{padding:44px 48px 0}.greeting{font-size:15px;font-weight:600;color:#1A1A1A;margin-bottom:20px}.body-text{font-size:15px;font-weight:400;color:#2E2E2E;line-height:1.7;margin-bottom:20px}.body-text strong{color:#1A1A1A;font-weight:700}.post-cta-highlight{border-left:3px solid #E5004C;padding:16px 20px;margin:0 48px 32px;background-color:#FDF5F8}.post-cta-highlight p{font-size:14px;font-weight:400;color:#2E2E2E;line-height:1.7}.post-cta-highlight strong{color:#E5004C;font-weight:700}.cta-section{padding:8px 48px 48px;text-align:center}.cta-button{display:inline-block;background-color:#E5004C;color:#FFF!important;font-family:'Inter Tight',Arial,sans-serif;font-size:14px;font-weight:700;letter-spacing:.04em;padding:16px 40px;border-radius:100px;text-decoration:none!important;margin-top:16px}.email-closing{padding:24px 48px 40px;text-align:left;border-top:1px solid #F4F1EC}.email-closing p{font-size:13px;color:#6B6B6B}.footer-banner{background-color:#E5004C;padding:28px 36px 24px}.footer-inner{display:flex;align-items:center;justify-content:center}.fb-logo{font-size:28px;font-weight:800;color:#F5F0EB;letter-spacing:-.5px;line-height:1;white-space:nowrap;flex-shrink:0}.fb-sep{width:1px;height:40px;background-color:rgba(245,240,235,.35);margin:0 20px;flex-shrink:0}.fb-tags{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.fb-tag{border:1.5px solid rgba(245,240,235,.45);border-radius:3px;padding:5px 12px;font-size:12px;font-weight:700;color:#F5F0EB;white-space:nowrap}.fb-tagline{margin-top:12px;text-align:center;font-size:12px;color:rgba(245,240,235,.7)}</style></head><body><div class="email-wrapper"><div class="email-container"><div class="header"><div class="header-logo">Albert</div><div class="header-tag">Cashback</div></div><div class="hero"><div class="hero-divider"></div><p class="hero-eyebrow">— Último dia —</p><h1 class="hero-title">Seu cashback<br/>vai expirar <span>em breve.</span></h1><p class="hero-subtitle">Cashback &middot; Promoções &middot; Benefícios exclusivos</p></div><div class="body-section"><p class="greeting">Oi!</p><p class="body-text">Seu cashback de <strong>R$ {{valor_cashback}}</strong>, recebido em <strong>{{parceiro}}</strong>, está quase vencendo.</p><p class="body-text">Abra o app, confira sua carteira e use seu cashback antes que ele expire.</p></div><div class="cta-section"><a href="javascript:void(0)" style="cursor:default;pointer-events:none;" class="cta-button" style="color:#FFF!important">Ver meu cashback agora &rarr;</a></div><div class="post-cta-highlight"><p><strong>Lembre-se:</strong> toda nova compra também pode gerar cashback.</p></div><div class="email-closing"><p>Até a próxima!</p><p style="margin-top:8px;font-size:14px;font-weight:700;color:#1A1A1A">Time Albert ❤️</p></div><div class="footer-banner"><div class="footer-inner"><div class="fb-logo">Albert</div><div class="fb-sep"></div><div class="fb-tags"><div class="fb-tag">+cashback</div><div class="fb-tag">+promoções</div><div class="fb-tag">+benefícios</div></div></div><div class="fb-tagline">Economize de verdade em cada compra.</div></div></div></div></body></html>`;
+
+// ── TEMPLATES DATA ────────────────────────────────────────────────────────────
 const T = {
-  'wpp_pre-d0':  { title:'Boas-vindas — Pré-cadastro', plano:'Pré-cadastro · Todos os planos', ponto:'D0 — Compra', trigger:'Imediatamente após a compra', vars:['{{nome}}','{{link_acesso}}','{{produto}}'], body:'Olá, *{{nome}}*! 🎉\n\nSua compra do *{{produto}}* foi confirmada!\n\nAcesse agora e comece a configurar sua conta:\n{{link_acesso}}\n\nQualquer dúvida, é só chamar aqui. 😊' },
-  'wpp_pre-p6':  { title:'Última chamada — Pré-cadastro', plano:'Pré-cadastro · Todos os planos', ponto:'P6 — 97%', trigger:'97% do ciclo concluído', vars:['{{nome}}','{{dias_restantes}}','{{link_acesso}}'], body:'Oi, *{{nome}}*! ⏳\n\nFaltam apenas *{{dias_restantes}} dias* para o fim do seu ciclo.\n\nConclua seu cadastro:\n{{link_acesso}}' },
-  'wpp_ess-d0':  { title:'Boas-vindas — Essencial', plano:'Essencial', ponto:'D0 — Compra', trigger:'Imediatamente após a compra', vars:['{{nome}}','{{link_acesso}}'], body:'Olá, *{{nome}}*! 👋\n\nBem-vindo! Sua conta já está pronta.\n\nAcesse e comece agora:\n{{link_acesso}}' },
-  'email_ess-p2':{ title:'Dica de uso — Essencial P2', plano:'Essencial', ponto:'P2 — 25%', trigger:'25% do ciclo concluído', vars:['{{nome}}','{{funcionalidade}}','{{link_tutorial}}'], subject:'Você está indo bem, {{nome}}! Veja essa dica 💡', body:'Oi, {{nome}}!\n\nVocê já está aproveitando o produto, mas queria te contar sobre {{funcionalidade}} — um recurso que pode facilitar muito o seu dia a dia.\n\nVeja como funciona em menos de 2 minutos:\n→ {{link_tutorial}}' },
-  'push_ess-p4': { title:'Engajamento — Essencial P4', plano:'Essencial', ponto:'P4 — 75%', trigger:'75% do ciclo concluído', vars:['{{nome}}'], pushTitle:'{{nome}}, tem novidade esperando por você 👀', body:'Entre agora e veja o que preparamos para deixar sua experiência ainda melhor.' },
-  'email_ess-p6':{ title:'Renovação — Essencial P6', plano:'Essencial', ponto:'P6 — 97%', trigger:'97% do ciclo concluído', vars:['{{nome}}','{{dias_restantes}}','{{link_renovacao}}'], subject:'Seu plano vence em {{dias_restantes}} dias, {{nome}}', body:'Oi, {{nome}}!\n\nSeu plano Essencial está chegando ao fim — restam apenas {{dias_restantes}} dias.\n\nRenove agora e continue sem interrupções:\n→ {{link_renovacao}}' },
-  'wpp_ava-d0':  { title:'Boas-vindas — Avançado', plano:'Avançado', ponto:'D0 — Compra', trigger:'Imediatamente após a compra', vars:['{{nome}}','{{link_acesso}}'], body:'Olá, *{{nome}}*! 🚀\n\nSua conta Avançado está pronta. Você tem acesso a todos os recursos premium.\n\nAcesse: {{link_acesso}}' },
-  'email_ava-p2':{ title:'Ativação de recurso — Avançado P2', plano:'Avançado', ponto:'P2 — 25%', trigger:'25% do ciclo concluído', vars:['{{nome}}','{{recurso_avancado}}','{{link_config}}'], subject:'{{nome}}, você ainda não ativou {{recurso_avancado}}', body:'Oi, {{nome}}!\n\nNotamos que {{recurso_avancado}} ainda não foi configurado na sua conta.\n\nConfigurar agora (leva menos de 5 min):\n→ {{link_config}}' },
-  'email_ava-p3':{ title:'Check de progresso — Avançado P3', plano:'Avançado', ponto:'P3 — 50%', trigger:'50% do ciclo concluído', vars:['{{nome}}','{{metrica_uso}}','{{link_relatorio}}'], subject:'Metade do caminho: veja seu progresso, {{nome}}', body:'Oi, {{nome}}!\n\nVocê chegou à metade do ciclo. Aqui está um resumo:\n\n📊 {{metrica_uso}}\n\nVeja o relatório completo:\n→ {{link_relatorio}}' },
-  'push_ava-p4': { title:'Engajamento — Avançado P4', plano:'Avançado', ponto:'P4 — 75%', trigger:'75% do ciclo concluído', vars:['{{nome}}'], pushTitle:'Já explorou tudo do plano Avançado, {{nome}}?', body:'Ainda há recursos que você não usou. Clique e confira o que está esperando por você.' },
-  'email_ava-p6':{ title:'Renovação — Avançado P6', plano:'Avançado', ponto:'P6 — 97%', trigger:'97% do ciclo concluído', vars:['{{nome}}','{{dias_restantes}}','{{link_renovacao}}'], subject:'⚠️ Seu plano Avançado vence em {{dias_restantes}} dias', body:'Oi, {{nome}}!\n\nSeu plano está perto do fim. Renove agora para não perder o acesso:\n→ {{link_renovacao}}' },
-  'wpp_pro-d0':  { title:'Boas-vindas — Profissional', plano:'Profissional', ponto:'D0 — Compra', trigger:'Imediatamente após a compra', vars:['{{nome}}','{{link_acesso}}','{{nome_cs}}'], body:'Olá, *{{nome}}*! 🏆\n\nBem-vindo ao plano Profissional!\n\nSeu Customer Success é *{{nome_cs}}* e já foi notificado sobre o seu onboarding.\n\nAcesse: {{link_acesso}}' },
-  'email_pro-p1':{ title:'Onboarding — Profissional P1', plano:'Profissional', ponto:'P1 — 10%', trigger:'10% do ciclo concluído', vars:['{{nome}}','{{nome_cs}}','{{link_agenda}}','{{link_guia}}'], subject:'Seu onboarding começa agora, {{nome}} 🚀', body:'Oi, {{nome}}!\n\nSou {{nome_cs}}, seu Customer Success. Vamos agendar uma sessão de onboarding de 30 minutos.\n→ Escolha um horário: {{link_agenda}}\n\nEnquanto isso, aqui está o guia de início rápido:\n→ {{link_guia}}' },
-  'push_pro-p2': { title:'Ativação — Profissional P2', plano:'Profissional', ponto:'P2 — 25%', trigger:'25% do ciclo concluído', vars:['{{nome}}','{{recurso_chave}}'], pushTitle:'Como está indo, {{nome}}?', body:'Você já configurou {{recurso_chave}}? É o recurso mais usado pelos clientes Profissional.' },
-  'email_pro-p3':{ title:'Mid-check — Profissional P3', plano:'Profissional', ponto:'P3 — 50%', trigger:'50% do ciclo concluído', vars:['{{nome}}','{{nome_cs}}','{{link_relatorio}}'], subject:'Revisão de meio de ciclo com {{nome_cs}}', body:'Oi, {{nome}}!\n\n{{nome_cs}} preparou um relatório personalizado com seus principais números.\n\n→ Ver relatório: {{link_relatorio}}' },
-  'email_pro-p4':{ title:'Upsell — Profissional P4', plano:'Profissional', ponto:'P4 — 75%', trigger:'75% do ciclo concluído', vars:['{{nome}}','{{recurso_premium}}','{{nome_cs}}','{{link_upgrade}}'], subject:'Você está pronto para o próximo nível, {{nome}}', body:'Oi, {{nome}}!\n\nCom base no seu uso, identificamos que {{recurso_premium}} poderia trazer resultados ainda maiores.\n\nConverse com {{nome_cs}}:\n→ {{link_upgrade}}' },
-  'wpp_pro-p5':  { title:'Pré-renovação — Profissional P5', plano:'Profissional', ponto:'P5 — 90%', trigger:'90% do ciclo concluído', vars:['{{nome}}','{{nome_cs}}','{{link_agenda}}'], body:'Oi, *{{nome}}*! 👋\n\nSou {{nome_cs}}. Seu ciclo está chegando ao fim e quero garantir que a renovação seja tranquila.\n\nEscolha um horário:\n{{link_agenda}}' },
-  'email_pro-p6':{ title:'Renovação — Profissional P6', plano:'Profissional', ponto:'P6 — 97%', trigger:'97% do ciclo concluído', vars:['{{nome}}','{{dias_restantes}}','{{nome_cs}}','{{link_renovacao}}'], subject:'Renovação do plano Profissional — ação necessária, {{nome}}', body:'Oi, {{nome}}!\n\nRestam apenas {{dias_restantes}} dias no seu ciclo Profissional.\n\n{{nome_cs}} preparou sua proposta com condições especiais.\n\n→ Ver proposta: {{link_renovacao}}' }
+  // WPP PRÉ-CADASTRO D0
+  'wpp_pre-d0': {
+    title: 'Boas-vindas — Pré-cadastro', plano: 'Pré-cadastro · Todos os planos', ponto: 'D0 — Compra',
+    trigger: 'Imediatamente após a compra',
+    vars: ['{{parceiro}}', '{{valor_da_compra}}', '{{valor_cashback}}', '{{data_vencimento}}', '{{compra_minima}}'],
+    wppBody: `Sua compra em *{{parceiro}}*, no valor de *{{valor_da_compra}}* foi concluída e gerou *{{valor_cashback}}* em créditos para a sua próxima visita.\n\nEles estarão disponíveis em 48 horas e podem ser usados até o dia *{{data_vencimento}}*, em compras de *R$ {{compra_minima}}* ou mais.\n\nVocê pode acompanhar seus créditos em tempo real pelo app.\nBasta realizar o login com seu telefone.`,
+    wppButtons: []
+  },
+  // WPP PRÉ-CADASTRO P6
+  'wpp_pre-p6': {
+    title: 'Lembrete de vencimento — Pré-cadastro', plano: 'Pré-cadastro · Todos os planos', ponto: 'P6 — 97%',
+    trigger: '97% do vencimento concluído',
+    vars: ['{{nome do parceiro}}', '{{data de vencimento}}'],
+    wppBody: `Lembrete: Seu cashback recebido em {{nome do parceiro}} é válido até {{data de vencimento}}.\n📌 Respeite as condições de uso.`,
+    wppButtons: []
+  },
+  // WPP ESSENCIAL D0
+  'wpp_ess-d0': {
+    title: 'Compra confirmada — Essencial', plano: 'Essencial', ponto: 'D0 — Compra',
+    trigger: 'Imediatamente após a compra',
+    vars: ['{{parceiro}}', '{{valor_da_compra}}', '{{valor_cashback}}', '{{data_vencimento}}', '{{compra_minima}}'],
+    wppBody: `Oi, notícia boa por aqui! 😊\n\nSua compra em *{{parceiro}}*, no valor de *{{valor_da_compra}}*, foi concluída e gerou *{{valor_cashback}}* em créditos para a sua próxima visita.\n\nEles estarão disponíveis em 48 horas e podem ser usados até o dia *{{data_vencimento}}*, em compras de *{{compra_minima}}* ou mais.\n\nConfira seus créditos em tempo real no app.\n\n📌 Nos conte como foi sua experiência clicando no botão abaixo.`,
+    wppButtons: ['Avaliar Experiência', 'Confira as regras']
+  },
+  // WPP AVANÇADO D0
+  'wpp_ava-d0': {
+    title: 'Compra confirmada — Avançado', plano: 'Avançado', ponto: 'D0 — Compra',
+    trigger: 'Imediatamente após a compra',
+    vars: ['{{parceiro}}', '{{valor_da_compra}}', '{{valor_cashback}}', '{{data_vencimento}}', '{{compra_minima}}'],
+    wppBody: `Oi, notícia boa por aqui! 😊\n\nSua compra em *{{parceiro}}*, no valor de *{{valor_da_compra}}*, foi concluída e gerou *{{valor_cashback}}* em créditos para a sua próxima visita.\n\nEles estarão disponíveis em 48 horas e podem ser usados até o dia *{{data_vencimento}}*, em compras de *{{compra_minima}}* ou mais.\n\nConfira seus créditos em tempo real no app.\n\n📌 Nos conte como foi sua experiência clicando no botão abaixo.`,
+    wppButtons: ['Avaliar Experiência', 'Confira as regras']
+  },
+  // WPP PROFISSIONAL D0
+  'wpp_pro-d0': {
+    title: 'Compra confirmada — Profissional', plano: 'Profissional', ponto: 'D0 — Compra',
+    trigger: 'Imediatamente após a compra',
+    vars: ['{{parceiro}}', '{{valor_da_compra}}', '{{valor_cashback}}', '{{data_vencimento}}', '{{compra_minima}}'],
+    wppBody: `Oi, notícia boa por aqui! 😊\n\nSua compra em *{{parceiro}}*, no valor de *{{valor_da_compra}}*, foi concluída e gerou *{{valor_cashback}}* em créditos para a sua próxima visita.\n\nEles estarão disponíveis em 48 horas e podem ser usados até o dia *{{data_vencimento}}*, em compras de *{{compra_minima}}* ou mais.\n\nConfira seus créditos em tempo real no app.\n\n📌 Nos conte como foi sua experiência clicando no botão abaixo.`,
+    wppButtons: ['Avaliar Experiência', 'Confira as regras']
+  },
+  // WPP PROFISSIONAL P5
+  'wpp_pro-p5': {
+    title: 'Lembrete de vencimento — Profissional', plano: 'Profissional', ponto: 'P5 — 90%',
+    trigger: '90% do vencimento concluído',
+    vars: ['{{nome do parceiro}}', '{{data de vencimento}}'],
+    wppBody: `Lembrete: Seu cashback recebido em {{nome do parceiro}} é válido até {{data de vencimento}}.\n📌 Respeite as condições de uso.`,
+    wppButtons: []
+  },
+  // PUSH
+  'push_ess-p4': { title: 'Push — Essencial P4', plano: 'Essencial', ponto: 'P4 — 75%', trigger: '75% do vencimento concluído', vars: [], pushTitle: 'Seu cashback vai vencer!', pushBody: 'Não deixa o dinheiro ir embora. Use agora no app.' },
+  'push_ava-p4': { title: 'Push — Avançado P4', plano: 'Avançado', ponto: 'P4 — 75%', trigger: '75% do vencimento concluído', vars: [], pushTitle: 'Seu cashback vai vencer!', pushBody: 'Não deixa o dinheiro ir embora. Use agora no app.' },
+  'push_pro-p2': { title: 'Push — Profissional P2', plano: 'Profissional', ponto: 'P2 — 25%', trigger: '25% do vencimento concluído', vars: [], pushTitle: 'Seu cashback vai vencer!', pushBody: 'Não deixa o dinheiro ir embora. Use agora no app.' },
+  // EMAILS
+  'email_ess-p2': { title: 'Seu cashback está esperando por você', subject: 'Seu cashback está esperando por você', plano: 'Essencial', ponto: 'P2 — 25%', trigger: '25% do vencimento concluído', vars: ['{{parceiro}}','{{valor_cashback}}','{{data_vencimento}}','{{compra_minima}}'], html: EMAIL_P2 },
+  'email_ess-p6': { title: 'Seu cashback está próximo ao vencimento! 🚨', subject: 'Seu cashback está próximo ao vencimento! 🚨', plano: 'Essencial', ponto: 'P6 — 97%', trigger: '97% do vencimento concluído', vars: ['{{valor_cashback}}','{{parceiro}}'], html: EMAIL_P6 },
+  'email_ava-p2': { title: 'Seu cashback está esperando por você', subject: 'Seu cashback está esperando por você', plano: 'Avançado', ponto: 'P2 — 25%', trigger: '25% do vencimento concluído', vars: ['{{parceiro}}','{{valor_cashback}}','{{data_vencimento}}','{{compra_minima}}'], html: EMAIL_P2 },
+  'email_ava-p3': { title: 'Não deixe seu cashback parado', subject: 'Não deixe seu cashback parado', plano: 'Avançado', ponto: 'P3 — 50%', trigger: '50% do vencimento concluído', vars: ['{{parceiro}}','{{valor_cashback}}','{{data_vencimento}}','{{compra_minima}}'], html: EMAIL_P3 },
+  'email_ava-p6': { title: 'Seu cashback está próximo ao vencimento! 🚨', subject: 'Seu cashback está próximo ao vencimento! 🚨', plano: 'Avançado', ponto: 'P6 — 97%', trigger: '97% do vencimento concluído', vars: ['{{valor_cashback}}','{{parceiro}}'], html: EMAIL_P6 },
+  'email_pro-p1': { title: 'Você recebeu cashback! 💰', subject: 'Você recebeu cashback! 💰', plano: 'Profissional', ponto: 'P1 — 10%', trigger: '10% do vencimento concluído', vars: ['{{parceiro}}','{{valor_cashback}}','{{data_vencimento}}','{{compra_minima}}'], html: EMAIL_P1 },
+  'email_pro-p3': { title: 'Não deixe seu cashback parado', subject: 'Não deixe seu cashback parado', plano: 'Profissional', ponto: 'P3 — 50%', trigger: '50% do vencimento concluído', vars: ['{{parceiro}}','{{valor_cashback}}','{{data_vencimento}}','{{compra_minima}}'], html: EMAIL_P3 },
+  'email_pro-p4': { title: 'Seu cashback vence em breve ⏳', subject: 'Seu cashback vence em breve ⏳', plano: 'Profissional', ponto: 'P4 — 75%', trigger: '75% do vencimento concluído', vars: ['{{parceiro}}','{{valor_cashback}}','{{data_vencimento}}','{{compra_minima}}'], html: EMAIL_P4 },
+  'email_pro-p6': { title: 'Seu cashback está próximo ao vencimento! 🚨', subject: 'Seu cashback está próximo ao vencimento! 🚨', plano: 'Profissional', ponto: 'P6 — 97%', trigger: '97% do vencimento concluído', vars: ['{{valor_cashback}}','{{parceiro}}'], html: EMAIL_P6 },
 };
 
-const iconMap = { wpp: WPP_SVG, email: EMAIL_SVG, push: PUSH_SVG };
-const labelMap = { wpp: 'WhatsApp', email: 'E-mail', push: 'Push' };
-const varClass = { wpp:'var-wpp', email:'var-email', push:'var-push' };
+const iconMap   = { wpp: WPP_SVG, email: EMAIL_SVG, push: PUSH_SVG };
+const labelMap  = { wpp: 'WhatsApp', email: 'E-mail', push: 'Push' };
+const varClass  = { wpp: 'var-wpp', email: 'var-email', push: 'var-push' };
 
 function openModal(ch, id) {
-  const t = T[ch+'_'+id]; if (!t) return;
+  const t = T[ch + '_' + id]; if (!t) return;
+
   document.getElementById('modalIcon').innerHTML = iconMap[ch];
   document.getElementById('modalTitle').textContent = t.title;
+  document.getElementById('modalSubject').textContent = '';
   document.getElementById('modalMeta').innerHTML =
     `<span><strong>Plano:</strong> ${t.plano}</span>` +
     `<span><strong>Ponto:</strong> ${t.ponto}</span>` +
     `<span><strong>Canal:</strong> ${labelMap[ch]}</span>`;
 
   let html = '';
-  const nl = s => s.replace(/\n/g,'<br>');
 
   if (ch === 'email') {
-    html = `<div class="email-preview"><div class="email-subject">${t.subject}</div><div class="email-body">${nl(t.body)}</div></div>`;
+    // render real email HTML in a sandboxed iframe via srcdoc
+    const encoded = t.html.replace(/"/g, '&quot;');
+    html = `<div class="email-frame-wrap"><iframe srcdoc="${encoded}" scrolling="yes" style="width:100%;height:520px;border:none;" sandbox="allow-same-origin allow-popups"></iframe></div>`;
   } else if (ch === 'wpp') {
-    const bold = s => s.replace(/\*(.*?)\*/g,'<strong>$1</strong>');
-    html = `<div class="wpp-wrap"><div class="whatsapp-preview">${bold(nl(t.body))}<div class="whatsapp-time">agora ✓✓</div></div></div>`;
+    const bold = s => s.replace(/\*(.*?)\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+    const btns = (t.wppButtons || []).map(b =>
+      `<div class="wpp-btn">${b}</div>`).join('');
+    html = `<div class="wpp-wrap"><div class="whatsapp-bubble">${bold(t.wppBody)}<div class="whatsapp-time">agora ✓✓</div>${btns ? `<div class="wpp-buttons">${btns}</div>` : ''}</div></div>`;
   } else {
-    html = `<div class="push-preview"><div class="push-app">Meu App · agora</div><div class="push-title">${t.pushTitle}</div><div class="push-body">${t.body}</div></div>`;
+    html = `<div class="push-wrap"><div class="push-phone-bg"><div class="push-notification"><div class="push-app-icon">a<div class="push-badge">5</div></div><div class="push-content"><div class="push-app-row"><span class="push-app-name">Albert</span><span class="push-time">agora</span></div><div class="push-title">${t.pushTitle}</div><div class="push-body">${t.pushBody}</div></div></div></div></div>`;
   }
 
-  html += `<div class="vars-section"><div class="vars-label">Variáveis dinâmicas</div><div class="vars">${t.vars.map(v=>`<span class="var-tag ${varClass[ch]}">${v}</span>`).join('')}</div></div>`;
+  if (t.vars && t.vars.length) {
+    html += `<div class="vars-section"><div class="vars-label">Variáveis dinâmicas</div><div class="vars">${t.vars.map(v => `<span class="var-tag ${varClass[ch]}">${v}</span>`).join('')}</div></div>`;
+  }
   html += `<div class="trigger-row">⚡ Gatilho: ${t.trigger}</div>`;
 
   document.getElementById('modalBody').innerHTML = html;
