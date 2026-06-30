@@ -1,1 +1,379 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Régua de Comunicação</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #f5f6fa;
+      color: #1a1d2e;
+      font-size: 14px;
+    }
+
+    header {
+      background: #1a1d2e;
+      color: #fff;
+      padding: 18px 28px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    header .dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: #4f8ef7;
+    }
+
+    header h1 {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    header span {
+      margin-left: auto;
+      font-size: 11px;
+      color: #8890a8;
+      background: #272b3d;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 2px;
+      padding: 16px 28px 0;
+      border-bottom: 1px solid #e2e4ec;
+      background: #fff;
+    }
+
+    .tab {
+      padding: 10px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #6b7280;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.15s;
+      border-radius: 4px 4px 0 0;
+    }
+
+    .tab:hover { color: #1a1d2e; background: #f5f6fa; }
+    .tab.active { color: #4f8ef7; border-bottom-color: #4f8ef7; background: #fff; }
+
+    .content {
+      padding: 24px 28px;
+      display: none;
+    }
+    .content.active { display: block; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #8890a8;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 14px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid #e2e4ec;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: box-shadow 0.15s;
+    }
+
+    .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+
+    .card-header {
+      padding: 14px 16px 10px;
+      border-bottom: 1px solid #f0f1f5;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .channel-badge {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .badge-email  { background: #eef3ff; color: #4f8ef7; }
+    .badge-push   { background: #fff3e8; color: #f07d3a; }
+    .badge-sms    { background: #e8faf0; color: #34a85a; }
+    .badge-inapp  { background: #f3eeff; color: #8b5cf6; }
+
+    .card-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1a1d2e;
+    }
+
+    .card-body { padding: 14px 16px; }
+
+    .preview-box {
+      background: #f8f9fc;
+      border: 1px solid #e8eaf0;
+      border-radius: 6px;
+      padding: 12px 14px;
+      font-size: 12px;
+      color: #4b5563;
+      line-height: 1.6;
+      margin-bottom: 12px;
+      min-height: 64px;
+    }
+
+    .preview-box .subject {
+      font-weight: 600;
+      color: #1a1d2e;
+      margin-bottom: 4px;
+      font-size: 12px;
+    }
+
+    .vars {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .var-tag {
+      background: #f0f4ff;
+      color: #4f8ef7;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+    }
+
+    .trigger {
+      font-size: 11px;
+      color: #8890a8;
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .trigger::before {
+      content: '⚡';
+      font-size: 10px;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 48px 24px;
+      color: #8890a8;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="dot"></div>
+  <h1>Régua de Comunicação — Templates</h1>
+  <span>🧪 Página de teste</span>
+</header>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('todos')">Todos</div>
+  <div class="tab" onclick="showTab('email')">Email</div>
+  <div class="tab" onclick="showTab('push')">Push</div>
+  <div class="tab" onclick="showTab('sms')">SMS</div>
+  <div class="tab" onclick="showTab('inapp')">In-app</div>
+</div>
+
+<div class="content active" id="tab-todos">
+  <p class="section-label">4 templates · Boas-vindas</p>
+  <div class="cards">
+
+    <div class="card">
+      <div class="card-header">
+        <span class="channel-badge badge-email">Email</span>
+        <span class="card-title">Bem-vindo ao produto</span>
+      </div>
+      <div class="card-body">
+        <div class="preview-box">
+          <div class="subject">Olá, {{nome}}! Sua conta está pronta 🎉</div>
+          Tudo configurado. Acesse agora e comece a explorar o que preparamos para você.
+        </div>
+        <div class="vars">
+          <span class="var-tag">{{nome}}</span>
+          <span class="var-tag">{{link_acesso}}</span>
+        </div>
+        <div class="trigger">Gatilho: cadastro concluído</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="channel-badge badge-push">Push</span>
+        <span class="card-title">Primeiro acesso</span>
+      </div>
+      <div class="card-body">
+        <div class="preview-box">
+          <div class="subject">Você tem uma novidade esperando 👀</div>
+          Abra o app e veja o que preparamos para o seu primeiro dia.
+        </div>
+        <div class="vars">
+          <span class="var-tag">{{nome}}</span>
+        </div>
+        <div class="trigger">Gatilho: D+1 após cadastro</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="channel-badge badge-sms">SMS</span>
+        <span class="card-title">Confirmação de cadastro</span>
+      </div>
+      <div class="card-body">
+        <div class="preview-box">
+          Sua conta foi criada com sucesso. Acesse: {{link_curto}}
+        </div>
+        <div class="vars">
+          <span class="var-tag">{{link_curto}}</span>
+        </div>
+        <div class="trigger">Gatilho: cadastro concluído</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="channel-badge badge-inapp">In-app</span>
+        <span class="card-title">Tour de boas-vindas</span>
+      </div>
+      <div class="card-body">
+        <div class="preview-box">
+          <div class="subject">Por onde começar?</div>
+          Veja um tour rápido de 2 minutos e aproveite tudo que o produto oferece.
+        </div>
+        <div class="vars">
+          <span class="var-tag">{{nome}}</span>
+          <span class="var-tag">{{id_tour}}</span>
+        </div>
+        <div class="trigger">Gatilho: primeiro login</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="content" id="tab-email">
+  <p class="section-label">1 template</p>
+  <div class="cards">
+    <div class="card">
+      <div class="card-header">
+        <span class="channel-badge badge-email">Email</span>
+        <span class="card-title">Bem-vindo ao produto</span>
+      </div>
+      <div class="card-body">
+        <div class="preview-box">
+          <div class="subject">Olá, {{nome}}! Sua conta está pronta 🎉</div>
+          Tudo configurado. Acesse agora e comece a explorar o que preparamos para você.
+        </div>
+        <div class="vars">
+          <span class="var-tag">{{nome}}</span>
+          <span class="var-tag">{{link_acesso}}</span>
+        </div>
+        <div class="trigger">Gatilho: cadastro concluído</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content" id="tab-push">
+  <p class="section-label">1 template</p>
+  <div class="cards">
+    <div class="card">
+      <div class="card-header">
+        <span class="channel-badge badge-push">Push</span>
+        <span class="card-title">Primeiro acesso</span>
+      </div>
+      <div class="card-body">
+        <div class="preview-box">
+          <div class="subject">Você tem uma novidade esperando 👀</div>
+          Abra o app e veja o que preparamos para o seu primeiro dia.
+        </div>
+        <div class="vars">
+          <span class="var-tag">{{nome}}</span>
+        </div>
+        <div class="trigger">Gatilho: D+1 após cadastro</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content" id="tab-sms">
+  <p class="section-label">1 template</p>
+  <div class="cards">
+    <div class="card">
+      <div class="card-header">
+        <span class="channel-badge badge-sms">SMS</span>
+        <span class="card-title">Confirmação de cadastro</span>
+      </div>
+      <div class="card-body">
+        <div class="preview-box">
+          Sua conta foi criada com sucesso. Acesse: {{link_curto}}
+        </div>
+        <div class="vars">
+          <span class="var-tag">{{link_curto}}</span>
+        </div>
+        <div class="trigger">Gatilho: cadastro concluído</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content" id="tab-inapp">
+  <p class="section-label">1 template</p>
+  <div class="cards">
+    <div class="card">
+      <div class="card-header">
+        <span class="channel-badge badge-inapp">In-app</span>
+        <span class="card-title">Tour de boas-vindas</span>
+      </div>
+      <div class="card-body">
+        <div class="preview-box">
+          <div class="subject">Por onde começar?</div>
+          Veja um tour rápido de 2 minutos e aproveite tudo que o produto oferece.
+        </div>
+        <div class="vars">
+          <span class="var-tag">{{nome}}</span>
+          <span class="var-tag">{{id_tour}}</span>
+        </div>
+        <div class="trigger">Gatilho: primeiro login</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function showTab(name) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+    event.target.classList.add('active');
+    document.getElementById('tab-' + name).classList.add('active');
+  }
+</script>
+
+</body>
+</html>
