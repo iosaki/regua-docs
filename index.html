@@ -9,371 +9,425 @@
 
     body {
       font-family: 'Segoe UI', system-ui, sans-serif;
-      background: #f5f6fa;
+      background: #F4F1EC;
       color: #1a1d2e;
       font-size: 14px;
     }
 
     header {
-      background: #1a1d2e;
+      background: #E5014C;
       color: #fff;
-      padding: 18px 28px;
+      padding: 16px 28px;
+    }
+    header h1 { font-size: 15px; font-weight: 600; letter-spacing: 0.01em; }
+
+    .legend {
+      display: flex;
+      gap: 24px;
+      padding: 16px 28px 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .legend-item {
       display: flex;
       align-items: center;
-      gap: 12px;
-    }
-
-    header .dot {
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      background: #4f8ef7;
-    }
-
-    header h1 {
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-    }
-
-    header span {
-      margin-left: auto;
-      font-size: 11px;
-      color: #8890a8;
-      background: #272b3d;
-      padding: 4px 10px;
-      border-radius: 20px;
-    }
-
-    .tabs {
-      display: flex;
-      gap: 2px;
-      padding: 16px 28px 0;
-      border-bottom: 1px solid #e2e4ec;
-      background: #fff;
-    }
-
-    .tab {
-      padding: 10px 18px;
+      gap: 7px;
       font-size: 13px;
+      color: #333;
       font-weight: 500;
-      color: #6b7280;
-      cursor: pointer;
-      border-bottom: 2px solid transparent;
-      transition: all 0.15s;
-      border-radius: 4px 4px 0 0;
     }
 
-    .tab:hover { color: #1a1d2e; background: #f5f6fa; }
-    .tab.active { color: #4f8ef7; border-bottom-color: #4f8ef7; background: #fff; }
-
-    .content {
-      padding: 24px 28px;
-      display: none;
+    .table-wrap {
+      padding: 0 28px 40px;
+      overflow-x: auto;
     }
-    .content.active { display: block; }
 
-    .section-label {
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #F4F1EC;
+      min-width: 720px;
+    }
+
+    thead tr th {
+      font-size: 12px;
+      font-weight: 500;
+      color: #888;
+      text-align: center;
+      padding: 10px 12px 6px;
+      border-bottom: 1.5px solid #d8d4cc;
+    }
+    thead tr th:first-child { text-align: left; }
+
+    .col-head { font-size: 13px; font-weight: 600; color: #1a1d2e; display: block; }
+    .col-sub  { font-size: 11px; color: #999; display: block; margin-top: 1px; }
+
+    tbody tr td {
+      padding: 14px 12px;
+      text-align: center;
+      border-bottom: 1px solid #dedad3;
+      vertical-align: middle;
+    }
+    tbody tr td:first-child { text-align: left; }
+
+    .plan-name  { font-weight: 700; font-size: 14px; }
+    .plan-sub   { font-size: 11px; color: #999; margin-top: 2px; }
+    .cycle-name { font-weight: 700; font-size: 14px; }
+    .day-cell   { font-size: 13px; color: #555; }
+
+    .section-row td {
+      background: #ebe8e1;
       font-size: 11px;
-      font-weight: 600;
-      color: #8890a8;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 14px;
+      color: #888;
+      font-weight: 500;
+      padding: 8px 12px !important;
+      border-bottom: 1px solid #d8d4cc !important;
+      text-align: center;
     }
+    .section-row td:first-child { text-align: left; }
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 16px;
+    .icon-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      transition: background 0.15s, transform 0.1s;
     }
+    .icon-btn:hover { background: rgba(0,0,0,0.07); transform: scale(1.12); }
 
-    .card {
+    .dash { color: #bbb; font-size: 18px; font-weight: 300; }
+
+    /* MODAL */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.38);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.open { display: flex; }
+
+    .modal {
       background: #fff;
-      border: 1px solid #e2e4ec;
-      border-radius: 10px;
-      overflow: hidden;
-      transition: box-shadow 0.15s;
+      border-radius: 14px;
+      width: 440px;
+      max-width: 94vw;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.2);
+      animation: pop .16s ease;
     }
+    @keyframes pop { from { transform: scale(.93); opacity:0 } to { transform:scale(1); opacity:1 } }
 
-    .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
-
-    .card-header {
-      padding: 14px 16px 10px;
-      border-bottom: 1px solid #f0f1f5;
+    .modal-header {
+      padding: 16px 20px 14px;
+      border-bottom: 1px solid #f0ede8;
       display: flex;
       align-items: center;
       gap: 10px;
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 1;
     }
-
-    .channel-badge {
-      font-size: 10px;
-      font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+    .modal-title { font-size: 14px; font-weight: 700; flex: 1; }
+    .modal-close {
+      background: none; border: none; cursor: pointer;
+      color: #999; font-size: 20px; line-height: 1;
+      padding: 2px 6px; border-radius: 4px;
     }
+    .modal-close:hover { background: #f5f0ea; color: #333; }
 
-    .badge-email  { background: #eef3ff; color: #4f8ef7; }
-    .badge-push   { background: #fff3e8; color: #f07d3a; }
-    .badge-sms    { background: #e8faf0; color: #34a85a; }
-    .badge-inapp  { background: #f3eeff; color: #8b5cf6; }
-
-    .card-title {
-      font-size: 13px;
-      font-weight: 600;
-      color: #1a1d2e;
-    }
-
-    .card-body { padding: 14px 16px; }
-
-    .preview-box {
-      background: #f8f9fc;
-      border: 1px solid #e8eaf0;
-      border-radius: 6px;
-      padding: 12px 14px;
+    .modal-meta {
+      padding: 10px 20px;
+      background: #faf8f5;
+      border-bottom: 1px solid #f0ede8;
       font-size: 12px;
-      color: #4b5563;
-      line-height: 1.6;
-      margin-bottom: 12px;
-      min-height: 64px;
-    }
-
-    .preview-box .subject {
-      font-weight: 600;
-      color: #1a1d2e;
-      margin-bottom: 4px;
-      font-size: 12px;
-    }
-
-    .vars {
+      color: #666;
       display: flex;
+      gap: 16px;
       flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 10px;
     }
+    .modal-meta strong { color: #1a1d2e; }
 
+    .modal-body { padding: 18px 20px 22px; }
+
+    /* Email */
+    .email-preview { border: 1px solid #e8e4dd; border-radius: 8px; overflow: hidden; }
+    .email-subject {
+      background: #f5f2ec; padding: 10px 14px;
+      font-weight: 600; font-size: 13px; color: #1a1d2e;
+      border-bottom: 1px solid #e8e4dd;
+    }
+    .email-body { padding: 14px; color: #333; line-height: 1.7; font-size: 13px; }
+
+    /* WhatsApp */
+    .wpp-wrap { padding: 4px 0 4px 14px; }
+    .whatsapp-preview {
+      background: #e9f7ef;
+      border-radius: 0 10px 10px 10px;
+      padding: 13px 15px;
+      font-size: 13px;
+      color: #1a1d2e;
+      line-height: 1.65;
+      display: inline-block;
+      max-width: 100%;
+      position: relative;
+    }
+    .whatsapp-preview::before {
+      content: '';
+      position: absolute;
+      left: -7px; top: 0;
+      border: 7px solid transparent;
+      border-right-color: #e9f7ef;
+      border-top-color: #e9f7ef;
+      border-left: 0;
+      border-top-left-radius: 3px;
+    }
+    .whatsapp-time { font-size: 10px; color: #999; text-align: right; margin-top: 6px; }
+
+    /* Push */
+    .push-preview {
+      background: #1a1d2e;
+      border-radius: 12px;
+      padding: 14px 16px;
+      color: #fff;
+    }
+    .push-app   { font-size: 10px; color: #aaa; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.07em; }
+    .push-title { font-weight: 700; font-size: 13px; margin-bottom: 5px; }
+    .push-body  { color: #ccc; line-height: 1.55; font-size: 12px; }
+
+    .vars-section { margin-top: 16px; }
+    .vars-label { font-size: 11px; color: #999; margin-bottom: 7px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+    .vars { display: flex; flex-wrap: wrap; gap: 6px; }
     .var-tag {
-      background: #f0f4ff;
-      color: #4f8ef7;
-      font-size: 10px;
-      font-weight: 600;
-      padding: 3px 8px;
-      border-radius: 4px;
+      font-size: 10px; font-weight: 600;
+      padding: 3px 9px; border-radius: 4px;
       font-family: 'Courier New', monospace;
     }
+    .var-email { background: #eef2ff; color: #4f8ef7; }
+    .var-wpp   { background: #e6f9ee; color: #25a244; }
+    .var-push  { background: #2d3150; color: #a0aaff; }
 
-    .trigger {
-      font-size: 11px;
-      color: #8890a8;
-      margin-top: 10px;
+    .trigger-row {
+      margin-top: 13px;
+      font-size: 12px;
+      color: #888;
       display: flex;
       align-items: center;
-      gap: 5px;
-    }
-
-    .trigger::before {
-      content: '⚡';
-      font-size: 10px;
-    }
-
-    .empty {
-      text-align: center;
-      padding: 48px 24px;
-      color: #8890a8;
-      font-size: 13px;
+      gap: 6px;
     }
   </style>
 </head>
 <body>
 
 <header>
-  <div class="dot"></div>
-  <h1>Régua de Comunicação — Templates</h1>
-  <span>🧪 Página de teste</span>
+  <h1>Régua de Comunicação</h1>
 </header>
 
-<div class="tabs">
-  <div class="tab active" onclick="showTab('todos')">Todos</div>
-  <div class="tab" onclick="showTab('email')">Email</div>
-  <div class="tab" onclick="showTab('push')">Push</div>
-  <div class="tab" onclick="showTab('sms')">SMS</div>
-  <div class="tab" onclick="showTab('inapp')">In-app</div>
-</div>
-
-<div class="content active" id="tab-todos">
-  <p class="section-label">4 templates · Boas-vindas</p>
-  <div class="cards">
-
-    <div class="card">
-      <div class="card-header">
-        <span class="channel-badge badge-email">Email</span>
-        <span class="card-title">Bem-vindo ao produto</span>
-      </div>
-      <div class="card-body">
-        <div class="preview-box">
-          <div class="subject">Olá, {{nome}}! Sua conta está pronta 🎉</div>
-          Tudo configurado. Acesse agora e comece a explorar o que preparamos para você.
-        </div>
-        <div class="vars">
-          <span class="var-tag">{{nome}}</span>
-          <span class="var-tag">{{link_acesso}}</span>
-        </div>
-        <div class="trigger">Gatilho: cadastro concluído</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <span class="channel-badge badge-push">Push</span>
-        <span class="card-title">Primeiro acesso</span>
-      </div>
-      <div class="card-body">
-        <div class="preview-box">
-          <div class="subject">Você tem uma novidade esperando 👀</div>
-          Abra o app e veja o que preparamos para o seu primeiro dia.
-        </div>
-        <div class="vars">
-          <span class="var-tag">{{nome}}</span>
-        </div>
-        <div class="trigger">Gatilho: D+1 após cadastro</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <span class="channel-badge badge-sms">SMS</span>
-        <span class="card-title">Confirmação de cadastro</span>
-      </div>
-      <div class="card-body">
-        <div class="preview-box">
-          Sua conta foi criada com sucesso. Acesse: {{link_curto}}
-        </div>
-        <div class="vars">
-          <span class="var-tag">{{link_curto}}</span>
-        </div>
-        <div class="trigger">Gatilho: cadastro concluído</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <span class="channel-badge badge-inapp">In-app</span>
-        <span class="card-title">Tour de boas-vindas</span>
-      </div>
-      <div class="card-body">
-        <div class="preview-box">
-          <div class="subject">Por onde começar?</div>
-          Veja um tour rápido de 2 minutos e aproveite tudo que o produto oferece.
-        </div>
-        <div class="vars">
-          <span class="var-tag">{{nome}}</span>
-          <span class="var-tag">{{id_tour}}</span>
-        </div>
-        <div class="trigger">Gatilho: primeiro login</div>
-      </div>
-    </div>
-
+<div class="legend">
+  <div class="legend-item">
+    <svg width="18" height="18" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#25D366"/><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.2-.7.9-.9 1-.2.1-.3.2-.6 0-.3-.1-1.2-.4-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.4.1-.6l.4-.5c.1-.2.1-.3.2-.5 0-.2 0-.4 0-.5-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.9-.9 2.1 0 1.3.9 2.5 1 2.7.1.2 1.8 2.7 4.3 3.8.6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.6-.3z" fill="#fff"/></svg>
+    WhatsApp
+  </div>
+  <div class="legend-item">
+    <svg width="19" height="15" viewBox="0 0 24 18"><rect width="24" height="18" rx="3" fill="#4f8ef7"/><path d="M0 4l12 8 12-8" stroke="#fff" stroke-width="1.5" fill="none"/></svg>
+    E-mail
+  </div>
+  <div class="legend-item">
+    <svg width="17" height="20" viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6V11c0-3.1-2.1-5.6-5-6.3V4c0-.6-.4-1-1-1s-1 .4-1 1v.7C8.1 5.4 6 7.9 6 11v5l-2 2v1h16v-1l-2-2z" fill="#E5014C"/></svg>
+    Push
+  </div>
+  <div class="legend-item" style="color:#bbb;">
+    <span style="font-size:18px;font-weight:300;line-height:1;color:#bbb;">—</span>
+    Não incluso
   </div>
 </div>
 
-<div class="content" id="tab-email">
-  <p class="section-label">1 template</p>
-  <div class="cards">
-    <div class="card">
-      <div class="card-header">
-        <span class="channel-badge badge-email">Email</span>
-        <span class="card-title">Bem-vindo ao produto</span>
-      </div>
-      <div class="card-body">
-        <div class="preview-box">
-          <div class="subject">Olá, {{nome}}! Sua conta está pronta 🎉</div>
-          Tudo configurado. Acesse agora e comece a explorar o que preparamos para você.
-        </div>
-        <div class="vars">
-          <span class="var-tag">{{nome}}</span>
-          <span class="var-tag">{{link_acesso}}</span>
-        </div>
-        <div class="trigger">Gatilho: cadastro concluído</div>
-      </div>
-    </div>
-  </div>
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th style="width:155px;text-align:left;color:#888;font-weight:400;">Plano</th>
+        <th><span class="col-head">D0</span><span class="col-sub">compra</span></th>
+        <th><span class="col-head">P1</span><span class="col-sub">10%</span></th>
+        <th><span class="col-head">P2</span><span class="col-sub">25%</span></th>
+        <th><span class="col-head">P3</span><span class="col-sub">50%</span></th>
+        <th><span class="col-head">P4</span><span class="col-sub">75%</span></th>
+        <th><span class="col-head">P5</span><span class="col-sub">90%</span></th>
+        <th><span class="col-head">P6</span><span class="col-sub">97%</span></th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr>
+        <td><div class="plan-name">Pré-cadastro</div><div class="plan-sub">todos os planos</div></td>
+        <td><button class="icon-btn" onclick="openModal('wpp','pre-d0')">WPP_ICON</button></td>
+        <td><span class="dash">—</span></td>
+        <td><span class="dash">—</span></td>
+        <td><span class="dash">—</span></td>
+        <td><span class="dash">—</span></td>
+        <td><span class="dash">—</span></td>
+        <td><button class="icon-btn" onclick="openModal('wpp','pre-p6')">WPP_ICON</button></td>
+      </tr>
+
+      <tr>
+        <td><div class="plan-name">Essencial</div></td>
+        <td><button class="icon-btn" onclick="openModal('wpp','ess-d0')">WPP_ICON</button></td>
+        <td><span class="dash">—</span></td>
+        <td><button class="icon-btn" onclick="openModal('email','ess-p2')">EMAIL_ICON</button></td>
+        <td><span class="dash">—</span></td>
+        <td><button class="icon-btn" onclick="openModal('push','ess-p4')">PUSH_ICON</button></td>
+        <td><span class="dash">—</span></td>
+        <td><button class="icon-btn" onclick="openModal('email','ess-p6')">EMAIL_ICON</button></td>
+      </tr>
+
+      <tr>
+        <td><div class="plan-name">Avançado</div></td>
+        <td><button class="icon-btn" onclick="openModal('wpp','ava-d0')">WPP_ICON</button></td>
+        <td><span class="dash">—</span></td>
+        <td><button class="icon-btn" onclick="openModal('email','ava-p2')">EMAIL_ICON</button></td>
+        <td><button class="icon-btn" onclick="openModal('email','ava-p3')">EMAIL_ICON</button></td>
+        <td><button class="icon-btn" onclick="openModal('push','ava-p4')">PUSH_ICON</button></td>
+        <td><span class="dash">—</span></td>
+        <td><button class="icon-btn" onclick="openModal('email','ava-p6')">EMAIL_ICON</button></td>
+      </tr>
+
+      <tr>
+        <td><div class="plan-name">Profissional</div></td>
+        <td><button class="icon-btn" onclick="openModal('wpp','pro-d0')">WPP_ICON</button></td>
+        <td><button class="icon-btn" onclick="openModal('email','pro-p1')">EMAIL_ICON</button></td>
+        <td><button class="icon-btn" onclick="openModal('push','pro-p2')">PUSH_ICON</button></td>
+        <td><button class="icon-btn" onclick="openModal('email','pro-p3')">EMAIL_ICON</button></td>
+        <td><button class="icon-btn" onclick="openModal('email','pro-p4')">EMAIL_ICON</button></td>
+        <td><button class="icon-btn" onclick="openModal('wpp','pro-p5')">WPP_ICON</button></td>
+        <td><button class="icon-btn" onclick="openModal('email','pro-p6')">EMAIL_ICON</button></td>
+      </tr>
+
+      <tr class="section-row">
+        <td>Ciclo</td>
+        <td>D0</td><td>P1 — 10%</td><td>P2 — 25%</td>
+        <td>P3 — 50%</td><td>P4 — 75%</td><td>P5 — 90%</td><td>P6 — 97%</td>
+      </tr>
+      <tr>
+        <td><div class="cycle-name">30 dias</div></td>
+        <td class="day-cell">dia 0</td><td class="day-cell">dia 3</td><td class="day-cell">dia 8</td>
+        <td class="day-cell">dia 15</td><td class="day-cell">dia 23</td><td class="day-cell">dia 27</td><td class="day-cell">dia 29</td>
+      </tr>
+      <tr>
+        <td><div class="cycle-name">60 dias</div></td>
+        <td class="day-cell">dia 0</td><td class="day-cell">dia 6</td><td class="day-cell">dia 15</td>
+        <td class="day-cell">dia 30</td><td class="day-cell">dia 45</td><td class="day-cell">dia 54</td><td class="day-cell">dia 58</td>
+      </tr>
+      <tr>
+        <td><div class="cycle-name">90 dias</div></td>
+        <td class="day-cell">dia 0</td><td class="day-cell">dia 9</td><td class="day-cell">dia 23</td>
+        <td class="day-cell">dia 45</td><td class="day-cell">dia 68</td><td class="day-cell">dia 81</td><td class="day-cell">dia 87</td>
+      </tr>
+      <tr>
+        <td><div class="cycle-name">180 dias</div></td>
+        <td class="day-cell">dia 0</td><td class="day-cell">dia 18</td><td class="day-cell">dia 45</td>
+        <td class="day-cell">dia 90</td><td class="day-cell">dia 135</td><td class="day-cell">dia 162</td><td class="day-cell">dia 175</td>
+      </tr>
+      <tr>
+        <td><div class="cycle-name">360 dias</div></td>
+        <td class="day-cell">dia 0</td><td class="day-cell">dia 36</td><td class="day-cell">dia 90</td>
+        <td class="day-cell">dia 180</td><td class="day-cell">dia 270</td><td class="day-cell">dia 324</td><td class="day-cell">dia 349</td>
+      </tr>
+
+    </tbody>
+  </table>
 </div>
 
-<div class="content" id="tab-push">
-  <p class="section-label">1 template</p>
-  <div class="cards">
-    <div class="card">
-      <div class="card-header">
-        <span class="channel-badge badge-push">Push</span>
-        <span class="card-title">Primeiro acesso</span>
-      </div>
-      <div class="card-body">
-        <div class="preview-box">
-          <div class="subject">Você tem uma novidade esperando 👀</div>
-          Abra o app e veja o que preparamos para o seu primeiro dia.
-        </div>
-        <div class="vars">
-          <span class="var-tag">{{nome}}</span>
-        </div>
-        <div class="trigger">Gatilho: D+1 após cadastro</div>
-      </div>
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeOnOverlay(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div id="modalIcon"></div>
+      <div class="modal-title" id="modalTitle"></div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
     </div>
-  </div>
-</div>
-
-<div class="content" id="tab-sms">
-  <p class="section-label">1 template</p>
-  <div class="cards">
-    <div class="card">
-      <div class="card-header">
-        <span class="channel-badge badge-sms">SMS</span>
-        <span class="card-title">Confirmação de cadastro</span>
-      </div>
-      <div class="card-body">
-        <div class="preview-box">
-          Sua conta foi criada com sucesso. Acesse: {{link_curto}}
-        </div>
-        <div class="vars">
-          <span class="var-tag">{{link_curto}}</span>
-        </div>
-        <div class="trigger">Gatilho: cadastro concluído</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="content" id="tab-inapp">
-  <p class="section-label">1 template</p>
-  <div class="cards">
-    <div class="card">
-      <div class="card-header">
-        <span class="channel-badge badge-inapp">In-app</span>
-        <span class="card-title">Tour de boas-vindas</span>
-      </div>
-      <div class="card-body">
-        <div class="preview-box">
-          <div class="subject">Por onde começar?</div>
-          Veja um tour rápido de 2 minutos e aproveite tudo que o produto oferece.
-        </div>
-        <div class="vars">
-          <span class="var-tag">{{nome}}</span>
-          <span class="var-tag">{{id_tour}}</span>
-        </div>
-        <div class="trigger">Gatilho: primeiro login</div>
-      </div>
-    </div>
+    <div class="modal-meta" id="modalMeta"></div>
+    <div class="modal-body" id="modalBody"></div>
   </div>
 </div>
 
 <script>
-  function showTab(name) {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
-    event.target.classList.add('active');
-    document.getElementById('tab-' + name).classList.add('active');
-  }
-</script>
+const WPP_SVG = `<svg width="22" height="22" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#25D366"/><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.2-.7.9-.9 1-.2.1-.3.2-.6 0-.3-.1-1.2-.4-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.4.1-.6l.4-.5c.1-.2.1-.3.2-.5 0-.2 0-.4 0-.5-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.9-.9 2.1 0 1.3.9 2.5 1 2.7.1.2 1.8 2.7 4.3 3.8.6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.6-.3z" fill="#fff"/></svg>`;
+const EMAIL_SVG = `<svg width="22" height="17" viewBox="0 0 24 18"><rect width="24" height="18" rx="3" fill="#4f8ef7"/><path d="M0 4l12 8 12-8" stroke="#fff" stroke-width="1.5" fill="none"/></svg>`;
+const PUSH_SVG = `<svg width="18" height="22" viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6V11c0-3.1-2.1-5.6-5-6.3V4c0-.6-.4-1-1-1s-1 .4-1 1v.7C8.1 5.4 6 7.9 6 11v5l-2 2v1h16v-1l-2-2z" fill="#E5014C"/></svg>`;
 
+// replace placeholders
+document.querySelectorAll('.icon-btn').forEach(btn => {
+  btn.innerHTML = btn.innerHTML
+    .replace('WPP_ICON', WPP_SVG)
+    .replace('EMAIL_ICON', EMAIL_SVG)
+    .replace('PUSH_ICON', PUSH_SVG);
+});
+
+const T = {
+  'wpp_pre-d0':  { title:'Boas-vindas — Pré-cadastro', plano:'Pré-cadastro · Todos os planos', ponto:'D0 — Compra', trigger:'Imediatamente após a compra', vars:['{{nome}}','{{link_acesso}}','{{produto}}'], body:'Olá, *{{nome}}*! 🎉\n\nSua compra do *{{produto}}* foi confirmada!\n\nAcesse agora e comece a configurar sua conta:\n{{link_acesso}}\n\nQualquer dúvida, é só chamar aqui. 😊' },
+  'wpp_pre-p6':  { title:'Última chamada — Pré-cadastro', plano:'Pré-cadastro · Todos os planos', ponto:'P6 — 97%', trigger:'97% do ciclo concluído', vars:['{{nome}}','{{dias_restantes}}','{{link_acesso}}'], body:'Oi, *{{nome}}*! ⏳\n\nFaltam apenas *{{dias_restantes}} dias* para o fim do seu ciclo.\n\nConclua seu cadastro:\n{{link_acesso}}' },
+  'wpp_ess-d0':  { title:'Boas-vindas — Essencial', plano:'Essencial', ponto:'D0 — Compra', trigger:'Imediatamente após a compra', vars:['{{nome}}','{{link_acesso}}'], body:'Olá, *{{nome}}*! 👋\n\nBem-vindo! Sua conta já está pronta.\n\nAcesse e comece agora:\n{{link_acesso}}' },
+  'email_ess-p2':{ title:'Dica de uso — Essencial P2', plano:'Essencial', ponto:'P2 — 25%', trigger:'25% do ciclo concluído', vars:['{{nome}}','{{funcionalidade}}','{{link_tutorial}}'], subject:'Você está indo bem, {{nome}}! Veja essa dica 💡', body:'Oi, {{nome}}!\n\nVocê já está aproveitando o produto, mas queria te contar sobre {{funcionalidade}} — um recurso que pode facilitar muito o seu dia a dia.\n\nVeja como funciona em menos de 2 minutos:\n→ {{link_tutorial}}' },
+  'push_ess-p4': { title:'Engajamento — Essencial P4', plano:'Essencial', ponto:'P4 — 75%', trigger:'75% do ciclo concluído', vars:['{{nome}}'], pushTitle:'{{nome}}, tem novidade esperando por você 👀', body:'Entre agora e veja o que preparamos para deixar sua experiência ainda melhor.' },
+  'email_ess-p6':{ title:'Renovação — Essencial P6', plano:'Essencial', ponto:'P6 — 97%', trigger:'97% do ciclo concluído', vars:['{{nome}}','{{dias_restantes}}','{{link_renovacao}}'], subject:'Seu plano vence em {{dias_restantes}} dias, {{nome}}', body:'Oi, {{nome}}!\n\nSeu plano Essencial está chegando ao fim — restam apenas {{dias_restantes}} dias.\n\nRenove agora e continue sem interrupções:\n→ {{link_renovacao}}' },
+  'wpp_ava-d0':  { title:'Boas-vindas — Avançado', plano:'Avançado', ponto:'D0 — Compra', trigger:'Imediatamente após a compra', vars:['{{nome}}','{{link_acesso}}'], body:'Olá, *{{nome}}*! 🚀\n\nSua conta Avançado está pronta. Você tem acesso a todos os recursos premium.\n\nAcesse: {{link_acesso}}' },
+  'email_ava-p2':{ title:'Ativação de recurso — Avançado P2', plano:'Avançado', ponto:'P2 — 25%', trigger:'25% do ciclo concluído', vars:['{{nome}}','{{recurso_avancado}}','{{link_config}}'], subject:'{{nome}}, você ainda não ativou {{recurso_avancado}}', body:'Oi, {{nome}}!\n\nNotamos que {{recurso_avancado}} ainda não foi configurado na sua conta.\n\nConfigurar agora (leva menos de 5 min):\n→ {{link_config}}' },
+  'email_ava-p3':{ title:'Check de progresso — Avançado P3', plano:'Avançado', ponto:'P3 — 50%', trigger:'50% do ciclo concluído', vars:['{{nome}}','{{metrica_uso}}','{{link_relatorio}}'], subject:'Metade do caminho: veja seu progresso, {{nome}}', body:'Oi, {{nome}}!\n\nVocê chegou à metade do ciclo. Aqui está um resumo:\n\n📊 {{metrica_uso}}\n\nVeja o relatório completo:\n→ {{link_relatorio}}' },
+  'push_ava-p4': { title:'Engajamento — Avançado P4', plano:'Avançado', ponto:'P4 — 75%', trigger:'75% do ciclo concluído', vars:['{{nome}}'], pushTitle:'Já explorou tudo do plano Avançado, {{nome}}?', body:'Ainda há recursos que você não usou. Clique e confira o que está esperando por você.' },
+  'email_ava-p6':{ title:'Renovação — Avançado P6', plano:'Avançado', ponto:'P6 — 97%', trigger:'97% do ciclo concluído', vars:['{{nome}}','{{dias_restantes}}','{{link_renovacao}}'], subject:'⚠️ Seu plano Avançado vence em {{dias_restantes}} dias', body:'Oi, {{nome}}!\n\nSeu plano está perto do fim. Renove agora para não perder o acesso:\n→ {{link_renovacao}}' },
+  'wpp_pro-d0':  { title:'Boas-vindas — Profissional', plano:'Profissional', ponto:'D0 — Compra', trigger:'Imediatamente após a compra', vars:['{{nome}}','{{link_acesso}}','{{nome_cs}}'], body:'Olá, *{{nome}}*! 🏆\n\nBem-vindo ao plano Profissional!\n\nSeu Customer Success é *{{nome_cs}}* e já foi notificado sobre o seu onboarding.\n\nAcesse: {{link_acesso}}' },
+  'email_pro-p1':{ title:'Onboarding — Profissional P1', plano:'Profissional', ponto:'P1 — 10%', trigger:'10% do ciclo concluído', vars:['{{nome}}','{{nome_cs}}','{{link_agenda}}','{{link_guia}}'], subject:'Seu onboarding começa agora, {{nome}} 🚀', body:'Oi, {{nome}}!\n\nSou {{nome_cs}}, seu Customer Success. Vamos agendar uma sessão de onboarding de 30 minutos.\n→ Escolha um horário: {{link_agenda}}\n\nEnquanto isso, aqui está o guia de início rápido:\n→ {{link_guia}}' },
+  'push_pro-p2': { title:'Ativação — Profissional P2', plano:'Profissional', ponto:'P2 — 25%', trigger:'25% do ciclo concluído', vars:['{{nome}}','{{recurso_chave}}'], pushTitle:'Como está indo, {{nome}}?', body:'Você já configurou {{recurso_chave}}? É o recurso mais usado pelos clientes Profissional.' },
+  'email_pro-p3':{ title:'Mid-check — Profissional P3', plano:'Profissional', ponto:'P3 — 50%', trigger:'50% do ciclo concluído', vars:['{{nome}}','{{nome_cs}}','{{link_relatorio}}'], subject:'Revisão de meio de ciclo com {{nome_cs}}', body:'Oi, {{nome}}!\n\n{{nome_cs}} preparou um relatório personalizado com seus principais números.\n\n→ Ver relatório: {{link_relatorio}}' },
+  'email_pro-p4':{ title:'Upsell — Profissional P4', plano:'Profissional', ponto:'P4 — 75%', trigger:'75% do ciclo concluído', vars:['{{nome}}','{{recurso_premium}}','{{nome_cs}}','{{link_upgrade}}'], subject:'Você está pronto para o próximo nível, {{nome}}', body:'Oi, {{nome}}!\n\nCom base no seu uso, identificamos que {{recurso_premium}} poderia trazer resultados ainda maiores.\n\nConverse com {{nome_cs}}:\n→ {{link_upgrade}}' },
+  'wpp_pro-p5':  { title:'Pré-renovação — Profissional P5', plano:'Profissional', ponto:'P5 — 90%', trigger:'90% do ciclo concluído', vars:['{{nome}}','{{nome_cs}}','{{link_agenda}}'], body:'Oi, *{{nome}}*! 👋\n\nSou {{nome_cs}}. Seu ciclo está chegando ao fim e quero garantir que a renovação seja tranquila.\n\nEscolha um horário:\n{{link_agenda}}' },
+  'email_pro-p6':{ title:'Renovação — Profissional P6', plano:'Profissional', ponto:'P6 — 97%', trigger:'97% do ciclo concluído', vars:['{{nome}}','{{dias_restantes}}','{{nome_cs}}','{{link_renovacao}}'], subject:'Renovação do plano Profissional — ação necessária, {{nome}}', body:'Oi, {{nome}}!\n\nRestam apenas {{dias_restantes}} dias no seu ciclo Profissional.\n\n{{nome_cs}} preparou sua proposta com condições especiais.\n\n→ Ver proposta: {{link_renovacao}}' }
+};
+
+const iconMap = { wpp: WPP_SVG, email: EMAIL_SVG, push: PUSH_SVG };
+const labelMap = { wpp: 'WhatsApp', email: 'E-mail', push: 'Push' };
+const varClass = { wpp:'var-wpp', email:'var-email', push:'var-push' };
+
+function openModal(ch, id) {
+  const t = T[ch+'_'+id]; if (!t) return;
+  document.getElementById('modalIcon').innerHTML = iconMap[ch];
+  document.getElementById('modalTitle').textContent = t.title;
+  document.getElementById('modalMeta').innerHTML =
+    `<span><strong>Plano:</strong> ${t.plano}</span>` +
+    `<span><strong>Ponto:</strong> ${t.ponto}</span>` +
+    `<span><strong>Canal:</strong> ${labelMap[ch]}</span>`;
+
+  let html = '';
+  const nl = s => s.replace(/\n/g,'<br>');
+
+  if (ch === 'email') {
+    html = `<div class="email-preview"><div class="email-subject">${t.subject}</div><div class="email-body">${nl(t.body)}</div></div>`;
+  } else if (ch === 'wpp') {
+    const bold = s => s.replace(/\*(.*?)\*/g,'<strong>$1</strong>');
+    html = `<div class="wpp-wrap"><div class="whatsapp-preview">${bold(nl(t.body))}<div class="whatsapp-time">agora ✓✓</div></div></div>`;
+  } else {
+    html = `<div class="push-preview"><div class="push-app">Meu App · agora</div><div class="push-title">${t.pushTitle}</div><div class="push-body">${t.body}</div></div>`;
+  }
+
+  html += `<div class="vars-section"><div class="vars-label">Variáveis dinâmicas</div><div class="vars">${t.vars.map(v=>`<span class="var-tag ${varClass[ch]}">${v}</span>`).join('')}</div></div>`;
+  html += `<div class="trigger-row">⚡ Gatilho: ${t.trigger}</div>`;
+
+  document.getElementById('modalBody').innerHTML = html;
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }
+function closeOnOverlay(e) { if (e.target === document.getElementById('modalOverlay')) closeModal(); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
 </body>
 </html>
