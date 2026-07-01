@@ -3,128 +3,437 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="format-detection" content="telephone=no, date=no, address=no, email=no, url=no" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <title>Régua de Pagamentos — Parceiros</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background-color: #F4F1EC; font-family: 'Inter Tight', Arial, sans-serif; -webkit-font-smoothing: antialiased; color: #0E0E0E; }
-    a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; }
-    .email-wrapper { background-color: #F4F1EC; padding: 40px 16px 60px; }
-    .email-container { max-width: 600px; margin: 0 auto; background-color: #FFFFFF; border-radius: 2px; overflow: hidden; }
-    .header { background-color: #0E0E0E; padding: 36px 48px 32px; display: flex; align-items: center; justify-content: space-between; }
-    .header-logo { font-size: 32px; font-weight: 800; color: #E5004C; letter-spacing: -0.5px; line-height: 1; }
-    .header-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: #6B6B6B; }
-    .hero { background-color: #0E0E0E; padding: 0 48px 52px; text-align: center; border-bottom: 1px solid #2A2A2A; }
-    .hero-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #6B6B6B; margin-bottom: 20px; }
-    .hero-title { font-size: 48px; font-weight: 800; color: #FFFFFF; line-height: 1.05; letter-spacing: -1px; margin-bottom: 10px; }
-    .hero-title span { color: #E5004C; }
-    .hero-subtitle { font-size: 13px; font-weight: 400; color: #6B6B6B; letter-spacing: 0.08em; }
-    .hero-divider { width: 32px; height: 2px; background-color: #E5004C; margin: 28px auto; }
-    .body-section { padding: 48px 48px 0; }
-    .greeting { font-size: 15px; font-weight: 600; color: #0E0E0E; margin-bottom: 20px; }
-    .body-text { font-size: 15px; font-weight: 400; color: #2A2A2A; line-height: 1.7; margin-bottom: 20px; }
-    .body-text strong { color: #0E0E0E; font-weight: 700; }
-    .highlight-block { border-left: 3px solid #E5004C; padding: 20px 24px; margin: 28px 0; }
-    .highlight-block p { font-size: 15px; font-weight: 400; color: #2A2A2A; line-height: 1.7; }
-    .highlight-block strong { color: #E5004C; font-weight: 700; }
-    .post-cta-highlight { border-left: 3px solid #E5004C; padding: 20px 24px; margin: 0 48px 32px; }
-    .post-cta-highlight p { font-size: 14px; font-weight: 400; color: #2A2A2A; line-height: 1.7; }
-    .post-cta-highlight strong { color: #E5004C; font-weight: 700; }
-    .cta-section { padding: 8px 48px 48px; text-align: center; }
-    .cta-button { display: inline-block; background-color: #E5004C; color: #FFFFFF !important; -webkit-text-fill-color: #FFFFFF !important; font-family: 'Inter Tight', Arial, sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.04em; padding: 16px 40px; border-radius: 2px; text-decoration: none !important; margin-top: 16px; }
-    .email-closing { padding: 24px 48px 40px; text-align: left; border-top: 1px solid #F4F1EC; }
-    .email-closing p { font-size: 13px; color: #6B6B6B; margin-bottom: 8px; }
-    .footer { background-color: #2A2A2A; padding: 28px 48px; display: flex; align-items: center; justify-content: center; gap: 0; }
-    .footer-brand { font-size: 22px; font-weight: 800; color: #F4F1EC; letter-spacing: -0.5px; line-height: 1; }
-    .footer-divider { width: 1px; height: 36px; background-color: #E5004C; margin: 0 20px; flex-shrink: 0; }
-    .footer-tags { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-    .footer-tag-item { font-size: 12px; font-weight: 700; color: #F4F1EC; border: 1px solid #4A4A4A; padding: 5px 12px; letter-spacing: 0.01em; }
-    .footer-tagline { font-size: 11px; font-weight: 400; color: #6B6B6B; margin-top: 8px; letter-spacing: 0.03em; }
-    @media (max-width: 520px) {
-      .header { padding: 28px 24px 24px; }
-      .hero { padding: 0 24px 40px; }
-      .hero-title { font-size: 34px; }
-      .body-section { padding: 36px 24px 0; }
-      .cta-section { padding: 8px 24px 40px; }
-      .post-cta-highlight { margin: 0 24px 28px; }
-      .email-closing { padding: 20px 24px 32px; }
-      .footer { flex-direction: column; align-items: center; text-align: center; padding: 28px 24px; gap: 0; }
-      .footer-divider { width: 40px; height: 2px; margin: 12px 0; }
-      .footer-tags { flex-direction: column; align-items: center; gap: 8px; }
-      .footer-tagline { text-align: center; }
-    }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #F4F1EC; color: #1a1d2e; font-size: 14px; }
+
+    header { background: #E5014C; color: #fff; padding: 16px 28px; }
+    header h1 { font-size: 15px; font-weight: 600; letter-spacing: 0.01em; }
+
+    .legend { display: flex; gap: 24px; padding: 16px 28px 12px; align-items: center; flex-wrap: wrap; }
+    .legend-item { display: flex; align-items: center; gap: 7px; font-size: 13px; color: #333; font-weight: 500; }
+
+    .tabs { display: flex; gap: 2px; padding: 0 28px; border-bottom: 1px solid #d8d4cc; background: #F4F1EC; }
+    .tab { padding: 10px 18px; font-size: 13px; font-weight: 500; color: #6b7280; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.15s; }
+    .tab:hover { color: #1a1d2e; }
+    .tab.active { color: #E5014C; border-bottom-color: #E5014C; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* TIMELINE */
+    .timeline-wrap { padding: 28px 28px 8px; }
+    .timeline { display: flex; align-items: flex-start; position: relative; overflow-x: auto; padding-bottom: 8px; gap: 0; }
+    .tl-track { position: absolute; top: 18px; left: 0; right: 0; height: 2px; background: #dedad3; z-index: 0; }
+    .tl-item { display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 72px; position: relative; z-index: 1; cursor: pointer; }
+    .tl-item:hover .tl-dot { transform: scale(1.25); }
+    .tl-dot { width: 14px; height: 14px; border-radius: 50%; background: #dedad3; border: 2px solid #F4F1EC; margin-bottom: 8px; transition: transform 0.15s; flex-shrink: 0; }
+    .tl-dot.email  { background: #4f8ef7; border-color: #F4F1EC; }
+    .tl-dot.wpp    { background: #25D366; border-color: #F4F1EC; }
+    .tl-dot.both   { background: linear-gradient(135deg, #4f8ef7 50%, #25D366 50%); border-color: #F4F1EC; }
+    .tl-dot.confirm{ background: #22c55e; border-color: #F4F1EC; }
+    .tl-dot.fail   { background: #ef4444; border-color: #F4F1EC; }
+    .tl-dot.active-dot { box-shadow: 0 0 0 3px rgba(229,1,76,0.25); border-color: #E5014C; transform: scale(1.3); }
+    .tl-label { font-size: 10px; font-weight: 700; color: #888; text-align: center; line-height: 1.3; }
+    .tl-label.active-label { color: #E5014C; }
+    .tl-sep { font-size: 9px; color: #aaa; margin-top: 2px; text-align: center; }
+
+    .phase { padding: 20px 28px 0; }
+    .phase-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #E5014C; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+    .phase-title::after { content: ''; flex: 1; height: 1px; background: rgba(229,1,76,0.15); }
+
+    .table-wrap { padding: 0 28px 24px; overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; background: #F4F1EC; table-layout: fixed; }
+    col.c-momento { width: 130px; }
+    col.c-canal   { width: 90px; }
+    col.c-titulo  { width: auto; }
+    col.c-status  { width: 90px; }
+
+    thead tr th { font-size: 11px; font-weight: 600; color: #888; padding: 8px 12px; border-bottom: 1.5px solid #d8d4cc; text-transform: uppercase; letter-spacing: 0.06em; text-align: left; }
+    thead tr th.center { text-align: center; }
+    tbody tr td { padding: 13px 12px; border-bottom: 1px solid #dedad3; vertical-align: middle; text-align: left; }
+    tbody tr td.center { text-align: center; }
+    .moment-cell { font-weight: 700; font-size: 14px; }
+    .titulo-cell { font-size: 13px; color: #444; line-height: 1.4; }
+    .status-cell { font-size: 12px; color: #999; font-style: italic; text-align: center; }
+
+    .icon-btn { background: none; border: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; transition: background 0.15s, transform 0.1s; }
+    .icon-btn:hover { background: rgba(0,0,0,0.07); transform: scale(1.12); }
+
+    /* MODAL */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 200; align-items: center; justify-content: center; }
+    .modal-overlay.open { display: flex; }
+    .modal { background: #fff; border-radius: 14px; width: 600px; max-width: 96vw; max-height: 90vh; overflow-y: auto; box-shadow: 0 24px 64px rgba(0,0,0,0.22); animation: pop .16s ease; }
+    @keyframes pop { from { transform:scale(.93); opacity:0 } to { transform:scale(1); opacity:1 } }
+
+    .modal-header { padding: 16px 16px 14px 20px; border-bottom: 1px solid #f0ede8; display: flex; align-items: center; gap: 10px; position: sticky; top: 0; background: #fff; z-index: 1; }
+    .modal-title { font-size: 14px; font-weight: 700; flex: 1; }
+    .modal-close { flex-shrink: 0; background: none; border: none; cursor: pointer; color: #aaa; font-size: 18px; line-height: 1; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: background 0.15s; margin-left: auto; }
+    .modal-close:hover { background: #f0ede8; color: #333; }
+
+    .modal-meta { padding: 10px 20px; background: #faf8f5; border-bottom: 1px solid #f0ede8; font-size: 12px; color: #666; display: flex; gap: 16px; flex-wrap: wrap; justify-content: space-between; align-items: center; }
+    .modal-meta strong { color: #1a1d2e; }
+
+    .copy-btn { display: inline-flex; align-items: center; gap: 6px; background: #1a1d2e; color: #fff; border: none; border-radius: 6px; padding: 6px 14px; font-size: 11px; font-weight: 600; cursor: pointer; letter-spacing: 0.03em; transition: background 0.15s; flex-shrink: 0; }
+    .copy-btn:hover { background: #E5014C; }
+    .copy-btn.copied { background: #22c55e; }
+
+    .modal-body { padding: 0; }
+    .email-frame-wrap iframe { width: 100%; border: none; display: block; }
+
+    .wpp-wrap { padding: 20px 20px 20px 28px; }
+    .whatsapp-bubble { background: #e9f7ef; border-radius: 0 10px 10px 10px; padding: 13px 15px; font-size: 13px; color: #1a1d2e; line-height: 1.7; display: inline-block; max-width: 100%; position: relative; }
+    .whatsapp-bubble::before { content:''; position:absolute; left:-7px; top:0; border:7px solid transparent; border-right-color:#e9f7ef; border-top-color:#e9f7ef; border-left:0; }
+    .whatsapp-time { font-size: 10px; color: #999; text-align: right; margin-top: 6px; }
+
+    .placeholder-box { margin: 20px; background: #f5f5f5; border: 2px dashed #d0d0d0; border-radius: 8px; padding: 32px 20px; text-align: center; color: #aaa; font-size: 13px; }
+    .placeholder-box span { display: block; font-size: 28px; margin-bottom: 8px; }
+    .trigger-row { margin: 0 20px 20px; font-size: 12px; color: #888; display: flex; align-items: center; gap: 6px; }
+
+    .vars-section { margin: 0 20px 16px; }
+    .vars-label { font-size: 11px; color: #999; margin-bottom: 7px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+    .vars { display: flex; flex-wrap: wrap; gap: 6px; }
+    .var-tag { font-size: 10px; font-weight: 600; padding: 3px 9px; border-radius: 4px; font-family: 'Courier New', monospace; }
+    .var-email { background: #eef2ff; color: #4f8ef7; }
+    .var-wpp   { background: #e6f9ee; color: #25a244; }
   </style>
 </head>
 <body>
-  <div class="email-wrapper">
-    <div class="email-container">
 
-      <!-- Header -->
-      <div class="header">
-        <div class="header-logo">Albert</div>
-        <div class="header-tag">Pagamento</div>
+<header><h1>Régua de Pagamentos — Parceiros</h1></header>
+
+<div class="legend">
+  <div class="legend-item">
+    <svg width="19" height="15" viewBox="0 0 24 18"><rect width="24" height="18" rx="3" fill="#4f8ef7"/><path d="M0 4l12 8 12-8" stroke="#fff" stroke-width="1.5" fill="none"/></svg>
+    E-mail
+  </div>
+  <div class="legend-item">
+    <svg width="18" height="18" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#25D366"/><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.2-.7.9-.9 1-.2.1-.3.2-.6 0-.3-.1-1.2-.4-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.4.1-.6l.4-.5c.1-.2.1-.3.2-.5 0-.2 0-.4 0-.5-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.9-.9 2.1 0 1.3.9 2.5 1 2.7.1.2 1.8 2.7 4.3 3.8.6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.6-.3z" fill="#fff"/></svg>
+    WhatsApp
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('boleto',event)">🧾 Boleto</div>
+  <div class="tab" onclick="showTab('cartao',event)">💳 Cartão de Crédito</div>
+</div>
+
+<!-- ══ BOLETO ══ -->
+<div class="tab-content active" id="tab-boleto">
+
+  <!-- TIMELINE -->
+  <div class="timeline-wrap">
+    <div class="timeline" id="tl-boleto">
+      <div class="tl-track"></div>
+      <div class="tl-item" onclick="openModal('email','bol-d4')">
+        <div class="tl-dot email" data-id="email_bol-d4"></div>
+        <div class="tl-label">D-4</div>
+        <div class="tl-sep">Email</div>
       </div>
-
-      <!-- Hero -->
-      <div class="hero">
-        <div class="hero-divider"></div>
-        <p class="hero-eyebrow">— Boas notícias —</p>
-        <h1 class="hero-title">
-          Pagamento<br /><span>confirmado.</span>
-        </h1>
-        <p class="hero-subtitle">{{ $('Execute a SQL query').item.json.company_name }}</p>
+      <div class="tl-item" onclick="openModal('wpp','bol-d1')">
+        <div class="tl-dot wpp" data-id="wpp_bol-d1"></div>
+        <div class="tl-label">D-1</div>
+        <div class="tl-sep">WhatsApp</div>
       </div>
-
-      <!-- Body -->
-      <div class="body-section">
-        <p class="greeting">Oi, {{ $('Execute a SQL query').item.json.partner_first_name }}!</p>
-
-        <p class="body-text">
-          Seu pagamento foi confirmado! Agora é hora de continuar acelerando o crescimento do seu negócio com o Albert.
-        </p>
-
-        <div class="highlight-block">
-          <p>Fique de olho nos detalhes da sua conta e acompanhe tudo de perto. Se precisar de algo, nossa equipe está sempre à disposição.</p>
-        </div>
-
-        <p class="body-text">
-          Agradecemos por estar conosco e por confiar no Albert para impulsionar suas vendas!
-        </p>
+      <div class="tl-item" onclick="openModal('email','bol-d0')">
+        <div class="tl-dot both" data-id="email_bol-d0"></div>
+        <div class="tl-label">D+0</div>
+        <div class="tl-sep">Email + WPP</div>
       </div>
-
-      <!-- CTA -->
-      <div class="cta-section">
-        <a href="https://parceiros.oialbert.com.br/" class="cta-button" style="color:#FFFFFF !important; -webkit-text-fill-color:#FFFFFF !important; text-decoration:none !important;">Acessar a plataforma &rarr;</a>
+      <div class="tl-item" onclick="openModal('wpp','bol-p1')">
+        <div class="tl-dot wpp" data-id="wpp_bol-p1"></div>
+        <div class="tl-label">D+1</div>
+        <div class="tl-sep">WhatsApp</div>
       </div>
-
-      <!-- Post-CTA highlight -->
-      <div class="post-cta-highlight">
-        <p><strong>{{ $('Execute a SQL query').item.json.company_name }}</strong></p>
+      <div class="tl-item" onclick="openModal('wpp','bol-p4')">
+        <div class="tl-dot wpp" data-id="wpp_bol-p4"></div>
+        <div class="tl-label">D+4</div>
+        <div class="tl-sep">WhatsApp</div>
       </div>
-
-      <!-- Closing -->
-      <div class="email-closing">
-        <p>Qualquer dúvida, estamos à disposição.</p>
-        <p style="margin-top:8px; font-size:14px; font-weight:700; color:#0E0E0E;">Equipe Albert</p>
+      <div class="tl-item" onclick="openModal('email','bol-p7')">
+        <div class="tl-dot email" data-id="email_bol-p7"></div>
+        <div class="tl-label">D+7</div>
+        <div class="tl-sep">Email</div>
       </div>
-
-      <!-- Footer -->
-      <div class="footer">
-        <div class="footer-brand">Albert</div>
-        <div class="footer-divider"></div>
-        <div>
-          <div class="footer-tags">
-            <span class="footer-tag-item">+ fidelização</span>
-            <span class="footer-tag-item">+ vendas</span>
-            <span class="footer-tag-item">+ inovação</span>
-          </div>
-          <div class="footer-tagline">O motor que acelera o crescimento do seu negócio.</div>
-        </div>
+      <div class="tl-item" onclick="openModal('email','bol-p15')">
+        <div class="tl-dot email" data-id="email_bol-p15"></div>
+        <div class="tl-label">D+15</div>
+        <div class="tl-sep">Email</div>
       </div>
-
+      <div class="tl-item" onclick="openModal('email','confirmacao')">
+        <div class="tl-dot confirm" data-id="email_confirmacao"></div>
+        <div class="tl-label">Pago</div>
+        <div class="tl-sep">Email</div>
+      </div>
     </div>
   </div>
+
+  <div class="phase"><div class="phase-title">Fase 1 — Pré-vencimento (preventiva)</div></div>
+  <div class="table-wrap">
+    <table>
+      <colgroup><col class="c-momento"><col class="c-canal"><col class="c-titulo"><col class="c-status"></colgroup>
+      <thead><tr><th>Momento</th><th class="center">Canal</th><th>Título do e-mail / mensagem</th><th class="center">Template</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><div class="moment-cell">D-4</div></td>
+          <td class="center"><button class="icon-btn" onclick="openModal('email','bol-d4')">__EMAIL__</button></td>
+          <td><div class="titulo-cell">Seu boleto Albert está pronto para pagamento</div></td>
+          <td class="status-cell">✅</td>
+        </tr>
+        <tr>
+          <td><div class="moment-cell">D-1</div></td>
+          <td class="center"><button class="icon-btn" onclick="openModal('wpp','bol-d1')">__WPP__</button></td>
+          <td><div class="titulo-cell">A definir</div></td>
+          <td class="status-cell">⏳</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="phase"><div class="phase-title">Fase 2 — Vencimento (D+0)</div></div>
+  <div class="table-wrap">
+    <table>
+      <colgroup><col class="c-momento"><col class="c-canal"><col class="c-titulo"><col class="c-status"></colgroup>
+      <thead><tr><th>Momento</th><th class="center">Canal</th><th>Título do e-mail / mensagem</th><th class="center">Template</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><div class="moment-cell">D+0</div></td>
+          <td class="center">
+            <button class="icon-btn" onclick="openModal('email','bol-d0')">__EMAIL__</button>
+            <button class="icon-btn" onclick="openModal('wpp','bol-d0')">__WPP__</button>
+          </td>
+          <td><div class="titulo-cell">Seu boleto vence hoje! / A definir</div></td>
+          <td class="status-cell">✅ / ⏳</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="phase"><div class="phase-title">Fase 3 — Tolerância (D+1 a D+4) + Pós-bloqueio (D+5 a D+15)</div></div>
+  <div class="table-wrap">
+    <table>
+      <colgroup><col class="c-momento"><col class="c-canal"><col class="c-titulo"><col class="c-status"></colgroup>
+      <thead><tr><th>Momento</th><th class="center">Canal</th><th>Título do e-mail / mensagem</th><th class="center">Template</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><div class="moment-cell">D+1</div></td>
+          <td class="center"><button class="icon-btn" onclick="openModal('wpp','bol-p1')">__WPP__</button></td>
+          <td><div class="titulo-cell">A definir</div></td>
+          <td class="status-cell">⏳</td>
+        </tr>
+        <tr>
+          <td><div class="moment-cell">D+4</div></td>
+          <td class="center"><button class="icon-btn" onclick="openModal('wpp','bol-p4')">__WPP__</button></td>
+          <td><div class="titulo-cell">A definir</div></td>
+          <td class="status-cell">⏳</td>
+        </tr>
+        <tr>
+          <td><div class="moment-cell">D+7</div></td>
+          <td class="center"><button class="icon-btn" onclick="openModal('email','bol-p7')">__EMAIL__</button></td>
+          <td><div class="titulo-cell">Sua assinatura Albert está em atraso!</div></td>
+          <td class="status-cell">✅</td>
+        </tr>
+        <tr>
+          <td><div class="moment-cell">D+15</div></td>
+          <td class="center"><button class="icon-btn" onclick="openModal('email','bol-p15')">__EMAIL__</button></td>
+          <td><div class="titulo-cell">Regularize sua assinatura antes da suspensão!</div></td>
+          <td class="status-cell">✅</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="phase"><div class="phase-title">Confirmação de pagamento</div></div>
+  <div class="table-wrap">
+    <table>
+      <colgroup><col class="c-momento"><col class="c-canal"><col class="c-titulo"><col class="c-status"></colgroup>
+      <thead><tr><th>Evento</th><th class="center">Canal</th><th>Título do e-mail</th><th class="center">Template</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><div class="moment-cell">Boleto pago</div></td>
+          <td class="center"><button class="icon-btn" onclick="openModal('email','confirmacao')">__EMAIL__</button></td>
+          <td><div class="titulo-cell">Seu Pagamento foi confirmado! Tudo certo!</div></td>
+          <td class="status-cell">✅</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- ══ CARTÃO ══ -->
+<div class="tab-content" id="tab-cartao">
+
+  <div class="timeline-wrap">
+    <div class="timeline" id="tl-cartao">
+      <div class="tl-track"></div>
+      <div class="tl-item" onclick="openModal('email','confirmacao')">
+        <div class="tl-dot confirm" data-id="email_confirmacao"></div>
+        <div class="tl-label">Aprovado</div>
+        <div class="tl-sep">Email</div>
+      </div>
+      <div class="tl-item" onclick="openModal('email','card-fail')">
+        <div class="tl-dot fail" data-id="email_card-fail"></div>
+        <div class="tl-label">Falha</div>
+        <div class="tl-sep">Email</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase"><div class="phase-title">Cobrança automática</div></div>
+  <div class="table-wrap">
+    <table>
+      <colgroup><col class="c-momento"><col class="c-canal"><col class="c-titulo"><col class="c-status"></colgroup>
+      <thead><tr><th>Evento</th><th class="center">Canal</th><th>Título do e-mail</th><th class="center">Template</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><div class="moment-cell">Pagamento aprovado</div></td>
+          <td class="center"><button class="icon-btn" onclick="openModal('email','confirmacao')">__EMAIL__</button></td>
+          <td><div class="titulo-cell">Seu Pagamento foi confirmado! Tudo certo!</div></td>
+          <td class="status-cell">✅</td>
+        </tr>
+        <tr>
+          <td><div class="moment-cell">Falha de pagamento</div></td>
+          <td class="center"><button class="icon-btn" onclick="openModal('email','card-fail')">__EMAIL__</button></td>
+          <td><div class="titulo-cell">Atenção: Pagamento reprovado.</div></td>
+          <td class="status-cell">✅</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeOnOverlay(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div id="modalIcon"></div>
+      <div style="flex:1;"><div class="modal-title" id="modalTitle"></div></div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-meta" id="modalMeta"></div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+const WPP_SVG = `<svg width="22" height="22" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#25D366"/><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.2-.7.9-.9 1-.2.1-.3.2-.6 0-.3-.1-1.2-.4-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.4.1-.6l.4-.5c.1-.2.1-.3.2-.5 0-.2 0-.4 0-.5-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.9-.9 2.1 0 1.3.9 2.5 1 2.7.1.2 1.8 2.7 4.3 3.8.6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.6-.3z" fill="#fff"/></svg>`;
+const EMAIL_SVG = `<svg width="22" height="17" viewBox="0 0 24 18"><rect width="24" height="18" rx="3" fill="#4f8ef7"/><path d="M0 4l12 8 12-8" stroke="#fff" stroke-width="1.5" fill="none"/></svg>`;
+
+document.querySelectorAll('.icon-btn').forEach(b => {
+  b.innerHTML = b.innerHTML.replace('__WPP__', WPP_SVG).replace('__EMAIL__', EMAIL_SVG);
+});
+
+// ── EMAIL HTML BODIES ──────────────────────────────────────────────────────
+const minify = s => s.replace(/\s+/g,' ').trim();
+
+const EMAIL_BOL_D4 = minify(`<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet"/><style>*{margin:0;padding:0;box-sizing:border-box}body{background-color:#F4F1EC;font-family:'Inter Tight',Arial,sans-serif;-webkit-font-smoothing:antialiased;color:#0E0E0E}a{color:inherit;text-decoration:none}img{display:block;max-width:100%}.email-wrapper{background-color:#F4F1EC;padding:40px 16px 60px}.email-container{max-width:600px;margin:0 auto;background-color:#FFFFFF;border-radius:2px;overflow:hidden}.header{background-color:#0E0E0E;padding:36px 48px 32px;display:flex;align-items:center;justify-content:space-between}.header-logo{font-size:32px;font-weight:800;color:#E5004C;letter-spacing:-.5px;line-height:1}.header-tag{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#6B6B6B}.hero{background-color:#0E0E0E;padding:0 48px 52px;text-align:center;border-bottom:1px solid #2A2A2A}.hero-eyebrow{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#6B6B6B;margin-bottom:20px}.hero-title{font-size:48px;font-weight:800;color:#FFFFFF;line-height:1.05;letter-spacing:-1px;margin-bottom:10px}.hero-title span{color:#E5004C}.hero-subtitle{font-size:13px;font-weight:400;color:#6B6B6B;letter-spacing:.08em}.hero-divider{width:32px;height:2px;background-color:#E5004C;margin:28px auto}.body-section{padding:48px 48px 0}.greeting{font-size:15px;font-weight:600;color:#0E0E0E;margin-bottom:20px}.body-text{font-size:15px;font-weight:400;color:#2A2A2A;line-height:1.7;margin-bottom:20px}.body-text strong{color:#0E0E0E;font-weight:700}.post-cta-highlight{border-left:3px solid #E5004C;padding:20px 24px;margin:0 48px 32px}.post-cta-highlight p{font-size:14px;font-weight:400;color:#2A2A2A;line-height:1.7}.post-cta-highlight strong{color:#E5004C;font-weight:700}.cta-section{padding:8px 48px 48px;text-align:center}.cta-button{display:inline-block;background-color:#E5004C;color:#FFFFFF!important;font-family:'Inter Tight',Arial,sans-serif;font-size:14px;font-weight:700;letter-spacing:.04em;padding:16px 40px;border-radius:2px;text-decoration:none!important;margin-top:16px}.email-closing{padding:24px 48px 40px;text-align:left;border-top:1px solid #F4F1EC}.email-closing p{font-size:13px;color:#6B6B6B;margin-bottom:8px}.footer{background-color:#2A2A2A;padding:28px 48px;display:flex;align-items:center;justify-content:center}.footer-brand{font-size:22px;font-weight:800;color:#F4F1EC;letter-spacing:-.5px;line-height:1}.footer-divider{width:1px;height:36px;background-color:#E5004C;margin:0 20px;flex-shrink:0}.footer-tags{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.footer-tag-item{font-size:12px;font-weight:700;color:#F4F1EC;border:1px solid #4A4A4A;padding:5px 12px}.footer-tagline{font-size:11px;font-weight:400;color:#6B6B6B;margin-top:8px}</style></head><body><div class="email-wrapper"><div class="email-container"><div class="header"><div class="header-logo">Albert</div><div class="header-tag">Pagamento</div></div><div class="hero"><div class="hero-divider"></div><p class="hero-eyebrow">— Boleto disponível —</p><h1 class="hero-title">Seu boleto está<br/>pronto para <span>pagar.</span></h1><p class="hero-subtitle">{{company_name}}</p></div><div class="body-section"><p class="greeting">Oi, {{partner_first_name}}!</p><p class="body-text">O boleto Albert referente à empresa <strong>{{company_name}}</strong> já está disponível para pagamento, no valor de <strong>R$ {{valor_reais}}</strong>.</p><p class="body-text">Você pode acessá-lo pelo link a seguir. O vencimento é em <strong>4 dias</strong> — realize o pagamento com antecedência para garantir a continuidade da sua operação.</p></div><div class="cta-section"><a href="javascript:void(0)" style="cursor:default;pointer-events:none;color:#FFFFFF!important;text-decoration:none!important;" class="cta-button">Pagar boleto agora &rarr;</a></div><div class="post-cta-highlight"><p>Para acessar a plataforma de parceiros, <a href="javascript:void(0)" style="color:#E5004C!important;font-weight:700;pointer-events:none;">clique aqui</a>.</p></div><div class="email-closing"><p>Se precisar de qualquer ajuda ou tiver dúvidas, estamos disponíveis pelos nossos canais de comunicação oficiais.</p><p>Obrigado por estar com a gente!</p><p style="margin-top:8px;font-size:14px;font-weight:700;color:#0E0E0E;">Equipe Albert</p></div><div class="footer"><div class="footer-brand">Albert</div><div class="footer-divider"></div><div><div class="footer-tags"><span class="footer-tag-item">+ fidelização</span><span class="footer-tag-item">+ vendas</span><span class="footer-tag-item">+ inovação</span></div><div class="footer-tagline">O motor que acelera o crescimento do seu negócio.</div></div></div></div></div></body></html>`);
+
+const EMAIL_BOL_D0 = minify(`<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet"/><style>*{margin:0;padding:0;box-sizing:border-box}body{background-color:#F4F1EC;font-family:'Inter Tight',Arial,sans-serif;-webkit-font-smoothing:antialiased;color:#0E0E0E}a{color:inherit;text-decoration:none}img{display:block;max-width:100%}.email-wrapper{background-color:#F4F1EC;padding:40px 16px 60px}.email-container{max-width:600px;margin:0 auto;background-color:#FFFFFF;border-radius:2px;overflow:hidden}.header{background-color:#0E0E0E;padding:36px 48px 32px;display:flex;align-items:center;justify-content:space-between}.header-logo{font-size:32px;font-weight:800;color:#E5004C;letter-spacing:-.5px;line-height:1}.header-tag{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#6B6B6B}.hero{background-color:#0E0E0E;padding:0 48px 52px;text-align:center;border-bottom:1px solid #2A2A2A}.hero-eyebrow{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#6B6B6B;margin-bottom:20px}.hero-title{font-size:48px;font-weight:800;color:#FFFFFF;line-height:1.05;letter-spacing:-1px;margin-bottom:10px}.hero-title span{color:#E5004C}.hero-subtitle{font-size:13px;font-weight:400;color:#6B6B6B;letter-spacing:.08em}.hero-divider{width:32px;height:2px;background-color:#E5004C;margin:28px auto}.body-section{padding:48px 48px 0}.greeting{font-size:15px;font-weight:600;color:#0E0E0E;margin-bottom:20px}.body-text{font-size:15px;font-weight:400;color:#2A2A2A;line-height:1.7;margin-bottom:20px;text-align:justify}.body-text strong{color:#0E0E0E;font-weight:700}.post-cta-highlight{border-left:3px solid #E5004C;padding:20px 24px;margin:0 48px 32px}.post-cta-highlight p{font-size:14px;font-weight:400;color:#2A2A2A;line-height:1.7}.cta-section{padding:8px 48px 48px;text-align:center}.cta-button{display:inline-block;background-color:#E5004C;color:#FFFFFF;font-family:'Inter Tight',Arial,sans-serif;font-size:14px;font-weight:700;letter-spacing:.04em;padding:16px 40px;border-radius:2px;text-decoration:none;margin-top:16px}.email-closing{padding:24px 48px;text-align:center;border-top:1px solid #F4F1EC}.email-closing p{font-size:13px;color:#6B6B6B}.footer{background-color:#2A2A2A;padding:28px 48px;display:flex;align-items:center;justify-content:center}.footer-brand{font-size:22px;font-weight:800;color:#F4F1EC;letter-spacing:-.5px;line-height:1}.footer-divider{width:1px;height:36px;background-color:#E5004C;margin:0 20px;flex-shrink:0}.footer-tags{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.footer-tag-item{font-size:12px;font-weight:700;color:#F4F1EC;border:1px solid #4A4A4A;padding:5px 12px}.footer-tagline{font-size:11px;font-weight:400;color:#6B6B6B;margin-top:8px}</style></head><body><div class="email-wrapper"><div class="email-container"><div class="header"><div class="header-logo">Albert</div><div class="header-tag">Assinatura</div></div><div class="hero"><div class="hero-divider"></div><p class="hero-eyebrow">— Pagamento —</p><h1 class="hero-title">Seu boleto<br/>vence <span>hoje.</span></h1><p class="hero-subtitle">{{company_name}}</p></div><div class="body-section"><p class="greeting">Olá,</p><p class="body-text">O boleto da sua assinatura Albert vence hoje no valor de <strong>R$ {{valor_reais}}</strong>.</p><p class="body-text">Para garantir que sua operação siga sem interrupções, realize o pagamento agora.</p></div><div class="cta-section"><a href="javascript:void(0)" style="cursor:default;pointer-events:none;color:#FFFFFF;" class="cta-button">Realizar pagamento →</a></div><div class="post-cta-highlight"><p>Seus clientes não podem esperar. Realize o pagamento e mantenha sua operação ativa.</p></div><div class="email-closing"><p>Qualquer dúvida, estamos à disposição.</p></div><div class="footer"><div class="footer-brand">Albert</div><div class="footer-divider"></div><div><div class="footer-tags"><span class="footer-tag-item">+ fidelização</span><span class="footer-tag-item">+ vendas</span><span class="footer-tag-item">+ inovação</span></div><div class="footer-tagline">O motor que acelera o crescimento do seu negócio.</div></div></div></div></div></body></html>`);
+
+const EMAIL_BOL_P7 = minify(`<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet"/><style>*{margin:0;padding:0;box-sizing:border-box}body{background-color:#F4F1EC;font-family:'Inter Tight',Arial,sans-serif;-webkit-font-smoothing:antialiased;color:#0E0E0E}a{color:inherit;text-decoration:none}img{display:block;max-width:100%}.email-wrapper{background-color:#F4F1EC;padding:40px 16px 60px}.email-container{max-width:600px;margin:0 auto;background-color:#FFFFFF;border-radius:2px;overflow:hidden}.header{background-color:#0E0E0E;padding:36px 48px 32px;display:flex;align-items:center;justify-content:space-between}.header-logo{font-size:32px;font-weight:800;color:#E5004C;letter-spacing:-.5px;line-height:1}.header-tag{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#6B6B6B}.hero{background-color:#0E0E0E;padding:0 48px 52px;text-align:center;border-bottom:1px solid #2A2A2A}.hero-eyebrow{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#6B6B6B;margin-bottom:20px}.hero-title{font-size:48px;font-weight:800;color:#FFFFFF;line-height:1.05;letter-spacing:-1px;margin-bottom:10px}.hero-title span{color:#E5004C}.hero-subtitle{font-size:13px;font-weight:400;color:#6B6B6B;letter-spacing:.08em}.hero-divider{width:32px;height:2px;background-color:#E5004C;margin:28px auto}.body-section{padding:48px 48px 0}.greeting{font-size:15px;font-weight:600;color:#0E0E0E;margin-bottom:20px}.body-text{font-size:15px;font-weight:400;color:#2A2A2A;line-height:1.7;margin-bottom:20px;text-align:justify}.body-text strong{color:#0E0E0E;font-weight:700}.post-cta-highlight{border-left:3px solid #E5004C;padding:20px 24px;margin:0 48px 32px}.post-cta-highlight p{font-size:14px;font-weight:400;color:#2A2A2A;line-height:1.7}.post-cta-highlight strong{color:#E5004C;font-weight:700}.cta-section{padding:8px 48px 48px;text-align:center}.cta-button{display:inline-block;background-color:#E5004C;color:#FFFFFF;font-family:'Inter Tight',Arial,sans-serif;font-size:14px;font-weight:700;letter-spacing:.04em;padding:16px 40px;border-radius:2px;text-decoration:none;margin-top:16px}.email-closing{padding:24px 48px;text-align:center;border-top:1px solid #F4F1EC}.email-closing p{font-size:13px;color:#6B6B6B}.footer{background-color:#2A2A2A;padding:28px 48px;display:flex;align-items:center;justify-content:center}.footer-brand{font-size:22px;font-weight:800;color:#F4F1EC;letter-spacing:-.5px;line-height:1}.footer-divider{width:1px;height:36px;background-color:#E5004C;margin:0 20px;flex-shrink:0}.footer-tags{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.footer-tag-item{font-size:12px;font-weight:700;color:#F4F1EC;border:1px solid #4A4A4A;padding:5px 12px}.footer-tagline{font-size:11px;font-weight:400;color:#6B6B6B;margin-top:8px}</style></head><body><div class="email-wrapper"><div class="email-container"><div class="header"><div class="header-logo">Albert</div><div class="header-tag">Regularização</div></div><div class="hero"><div class="hero-divider"></div><p class="hero-eyebrow">— Atenção —</p><h1 class="hero-title">Sua assinatura<br/>está em <span>atraso.</span></h1><p class="hero-subtitle">{{company_name}}</p></div><div class="body-section"><p class="greeting">Olá, {{partner_first_name}},</p><p class="body-text">O pagamento da assinatura de <strong>{{company_name}}</strong> ainda não foi identificado em nosso sistema.</p></div><div class="cta-section"><a href="javascript:void(0)" style="cursor:default;pointer-events:none;color:#FFFFFF;" class="cta-button">Regularizar agora →</a></div><div class="post-cta-highlight"><p>Seus clientes acumularam cashback e estão esperando para usá-lo. Regularize agora.</p></div><div class="email-closing"><p>Nossa equipe está disponível para ajudar em caso de dúvidas.</p></div><div class="footer"><div class="footer-brand">Albert</div><div class="footer-divider"></div><div><div class="footer-tags"><span class="footer-tag-item">+ fidelização</span><span class="footer-tag-item">+ vendas</span><span class="footer-tag-item">+ inovação</span></div><div class="footer-tagline">O motor que acelera o crescimento do seu negócio.</div></div></div></div></div></body></html>`);
+
+const EMAIL_BOL_P15 = minify(`<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet"/><style>*{margin:0;padding:0;box-sizing:border-box}body{background-color:#F4F1EC;font-family:'Inter Tight',Arial,sans-serif;-webkit-font-smoothing:antialiased;color:#0E0E0E}a{color:inherit;text-decoration:none}img{display:block;max-width:100%}.email-wrapper{background-color:#F4F1EC;padding:40px 16px 60px}.email-container{max-width:600px;margin:0 auto;background-color:#FFFFFF;border-radius:2px;overflow:hidden}.header{background-color:#0E0E0E;padding:36px 48px 32px;display:flex;align-items:center;justify-content:space-between}.header-logo{font-size:32px;font-weight:800;color:#E5004C;letter-spacing:-.5px;line-height:1}.header-tag{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#6B6B6B}.hero{background-color:#0E0E0E;padding:0 48px 52px;text-align:center;border-bottom:1px solid #2A2A2A}.hero-eyebrow{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#6B6B6B;margin-bottom:20px}.hero-title{font-size:48px;font-weight:800;color:#FFFFFF;line-height:1.05;letter-spacing:-1px;margin-bottom:10px}.hero-title span{color:#E5004C}.hero-subtitle{font-size:13px;font-weight:400;color:#6B6B6B;letter-spacing:.08em}.hero-divider{width:32px;height:2px;background-color:#E5004C;margin:28px auto}.body-section{padding:48px 48px 0}.greeting{font-size:15px;font-weight:600;color:#0E0E0E;margin-bottom:20px}.body-text{font-size:15px;font-weight:400;color:#2A2A2A;line-height:1.7;margin-bottom:20px;text-align:justify}.body-text strong{color:#0E0E0E;font-weight:700}.post-cta-highlight{border-left:3px solid #E5004C;padding:20px 24px;margin:0 48px 32px}.post-cta-highlight p{font-size:14px;font-weight:400;color:#2A2A2A;line-height:1.7}.post-cta-highlight strong{color:#E5004C;font-weight:700}.cta-section{padding:8px 48px 48px;text-align:center}.cta-button{display:inline-block;background-color:#E5004C;color:#FFFFFF;font-family:'Inter Tight',Arial,sans-serif;font-size:14px;font-weight:700;letter-spacing:.04em;padding:16px 40px;border-radius:2px;text-decoration:none;margin-top:16px}.email-closing{padding:24px 48px;text-align:center;border-top:1px solid #F4F1EC}.email-closing p{font-size:13px;color:#6B6B6B}.footer{background-color:#2A2A2A;padding:28px 48px;display:flex;align-items:center;justify-content:center}.footer-brand{font-size:22px;font-weight:800;color:#F4F1EC;letter-spacing:-.5px;line-height:1}.footer-divider{width:1px;height:36px;background-color:#E5004C;margin:0 20px;flex-shrink:0}.footer-tags{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.footer-tag-item{font-size:12px;font-weight:700;color:#F4F1EC;border:1px solid #4A4A4A;padding:5px 12px}.footer-tagline{font-size:11px;font-weight:400;color:#6B6B6B;margin-top:8px}</style></head><body><div class="email-wrapper"><div class="email-container"><div class="header"><div class="header-logo">Albert</div><div class="header-tag">Suspensão</div></div><div class="hero"><div class="hero-divider"></div><p class="hero-eyebrow">— Último aviso —</p><h1 class="hero-title">Sua conta será<br/><span>suspensa.</span></h1><p class="hero-subtitle">{{company_name}}</p></div><div class="body-section"><p class="greeting">Olá, {{partner_first_name}},</p><p class="body-text">Já se passaram alguns dias desde o vencimento da sua assinatura Albert e não identificamos nenhum pagamento.</p><p class="body-text">Cada dia sem a plataforma ativa é um dia a menos de cashback, fidelização e vendas recorrentes.</p></div><div class="cta-section"><a href="javascript:void(0)" style="cursor:default;pointer-events:none;color:#FFFFFF;" class="cta-button">Regularizar minha conta →</a></div><div class="post-cta-highlight"><p>Se não houver regularização em breve, sua conta será <strong>suspensa</strong> e o acesso à plataforma encerrado.</p></div><div class="email-closing"><p>Nossa equipe está disponível para qualquer dúvida.</p></div><div class="footer"><div class="footer-brand">Albert</div><div class="footer-divider"></div><div><div class="footer-tags"><span class="footer-tag-item">+ fidelização</span><span class="footer-tag-item">+ vendas</span><span class="footer-tag-item">+ inovação</span></div><div class="footer-tagline">O motor que acelera o crescimento do seu negócio.</div></div></div></div></div></body></html>`);
+
+const EMAIL_CONFIRMACAO = minify(`<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet"/><style>*{margin:0;padding:0;box-sizing:border-box}body{background-color:#F4F1EC;font-family:'Inter Tight',Arial,sans-serif;-webkit-font-smoothing:antialiased;color:#0E0E0E}a{color:inherit;text-decoration:none}img{display:block;max-width:100%}.email-wrapper{background-color:#F4F1EC;padding:40px 16px 60px}.email-container{max-width:600px;margin:0 auto;background-color:#FFFFFF;border-radius:2px;overflow:hidden}.header{background-color:#0E0E0E;padding:36px 48px 32px;display:flex;align-items:center;justify-content:space-between}.header-logo{font-size:32px;font-weight:800;color:#E5004C;letter-spacing:-.5px;line-height:1}.header-tag{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#6B6B6B}.hero{background-color:#0E0E0E;padding:0 48px 52px;text-align:center;border-bottom:1px solid #2A2A2A}.hero-eyebrow{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#6B6B6B;margin-bottom:20px}.hero-title{font-size:48px;font-weight:800;color:#FFFFFF;line-height:1.05;letter-spacing:-1px;margin-bottom:10px}.hero-title span{color:#E5004C}.hero-subtitle{font-size:13px;font-weight:400;color:#6B6B6B;letter-spacing:.08em}.hero-divider{width:32px;height:2px;background-color:#E5004C;margin:28px auto}.body-section{padding:48px 48px 0}.greeting{font-size:15px;font-weight:600;color:#0E0E0E;margin-bottom:20px}.body-text{font-size:15px;font-weight:400;color:#2A2A2A;line-height:1.7;margin-bottom:20px}.body-text strong{color:#0E0E0E;font-weight:700}.highlight-block{border-left:3px solid #E5004C;padding:20px 24px;margin:28px 0}.highlight-block p{font-size:15px;font-weight:400;color:#2A2A2A;line-height:1.7}.highlight-block strong{color:#E5004C;font-weight:700}.post-cta-highlight{border-left:3px solid #E5004C;padding:20px 24px;margin:0 48px 32px}.post-cta-highlight p{font-size:14px;font-weight:400;color:#2A2A2A;line-height:1.7}.post-cta-highlight strong{color:#E5004C;font-weight:700}.cta-section{padding:8px 48px 48px;text-align:center}.cta-button{display:inline-block;background-color:#E5004C;color:#FFFFFF!important;font-family:'Inter Tight',Arial,sans-serif;font-size:14px;font-weight:700;letter-spacing:.04em;padding:16px 40px;border-radius:2px;text-decoration:none!important;margin-top:16px}.email-closing{padding:24px 48px 40px;text-align:left;border-top:1px solid #F4F1EC}.email-closing p{font-size:13px;color:#6B6B6B;margin-bottom:8px}.footer{background-color:#2A2A2A;padding:28px 48px;display:flex;align-items:center;justify-content:center}.footer-brand{font-size:22px;font-weight:800;color:#F4F1EC;letter-spacing:-.5px;line-height:1}.footer-divider{width:1px;height:36px;background-color:#E5004C;margin:0 20px;flex-shrink:0}.footer-tags{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.footer-tag-item{font-size:12px;font-weight:700;color:#F4F1EC;border:1px solid #4A4A4A;padding:5px 12px}.footer-tagline{font-size:11px;font-weight:400;color:#6B6B6B;margin-top:8px}</style></head><body><div class="email-wrapper"><div class="email-container"><div class="header"><div class="header-logo">Albert</div><div class="header-tag">Pagamento</div></div><div class="hero"><div class="hero-divider"></div><p class="hero-eyebrow">— Boas notícias —</p><h1 class="hero-title">Pagamento<br/><span>confirmado.</span></h1><p class="hero-subtitle">{{company_name}}</p></div><div class="body-section"><p class="greeting">Oi, {{partner_first_name}}!</p><p class="body-text">Seu pagamento foi confirmado! Agora é hora de continuar acelerando o crescimento do seu negócio com o Albert.</p><div class="highlight-block"><p>Fique de olho nos detalhes da sua conta e acompanhe tudo de perto. Se precisar de algo, nossa equipe está sempre à disposição.</p></div><p class="body-text">Agradecemos por estar conosco e por confiar no Albert para impulsionar suas vendas!</p></div><div class="cta-section"><a href="javascript:void(0)" style="cursor:default;pointer-events:none;color:#FFFFFF!important;" class="cta-button">Acessar a plataforma &rarr;</a></div><div class="post-cta-highlight"><p><strong>{{company_name}}</strong></p></div><div class="email-closing"><p>Qualquer dúvida, estamos à disposição.</p><p style="margin-top:8px;font-size:14px;font-weight:700;color:#0E0E0E;">Equipe Albert</p></div><div class="footer"><div class="footer-brand">Albert</div><div class="footer-divider"></div><div><div class="footer-tags"><span class="footer-tag-item">+ fidelização</span><span class="footer-tag-item">+ vendas</span><span class="footer-tag-item">+ inovação</span></div><div class="footer-tagline">O motor que acelera o crescimento do seu negócio.</div></div></div></div></div></body></html>`);
+
+const EMAIL_CARD_FAIL = minify(`<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet"/><style>*{margin:0;padding:0;box-sizing:border-box}body{background-color:#F4F1EC;font-family:'Inter Tight',Arial,sans-serif;-webkit-font-smoothing:antialiased;color:#0E0E0E}a{color:inherit;text-decoration:none}img{display:block;max-width:100%}.email-wrapper{background-color:#F4F1EC;padding:40px 16px 60px}.email-container{max-width:600px;margin:0 auto;background-color:#FFFFFF;border-radius:2px;overflow:hidden}.header{background-color:#0E0E0E;padding:36px 48px 32px;display:flex;align-items:center;justify-content:space-between}.header-logo{font-size:32px;font-weight:800;color:#E5004C;letter-spacing:-.5px;line-height:1}.header-tag{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#6B6B6B}.hero{background-color:#0E0E0E;padding:0 48px 52px;text-align:center;border-bottom:1px solid #2A2A2A}.hero-eyebrow{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#6B6B6B;margin-bottom:20px}.hero-title{font-size:48px;font-weight:800;color:#FFFFFF;line-height:1.05;letter-spacing:-1px;margin-bottom:10px}.hero-title span{color:#E5004C}.hero-subtitle{font-size:13px;font-weight:400;color:#6B6B6B;letter-spacing:.08em}.hero-divider{width:32px;height:2px;background-color:#E5004C;margin:28px auto}.body-section{padding:48px 48px 0}.greeting{font-size:15px;font-weight:600;color:#0E0E0E;margin-bottom:20px}.body-text{font-size:15px;font-weight:400;color:#2A2A2A;line-height:1.7;margin-bottom:20px}.body-text strong{color:#0E0E0E;font-weight:700}.highlight-block{border-left:3px solid #E5004C;padding:20px 24px;margin:28px 0}.highlight-block p{font-size:15px;font-weight:400;color:#2A2A2A;line-height:1.7}.highlight-block strong{color:#E5004C;font-weight:700}.post-cta-highlight{border-left:3px solid #E5004C;padding:20px 24px;margin:0 48px 32px}.post-cta-highlight p{font-size:14px;font-weight:400;color:#2A2A2A;line-height:1.7}.post-cta-highlight strong{color:#E5004C;font-weight:700}.cta-section{padding:8px 48px 48px;text-align:center}.cta-button{display:inline-block;background-color:#E5004C;color:#FFFFFF!important;font-family:'Inter Tight',Arial,sans-serif;font-size:14px;font-weight:700;letter-spacing:.04em;padding:16px 40px;border-radius:2px;text-decoration:none!important;margin-top:16px}.email-closing{padding:24px 48px 40px;text-align:left;border-top:1px solid #F4F1EC}.email-closing p{font-size:13px;color:#6B6B6B;margin-bottom:8px}.footer{background-color:#2A2A2A;padding:28px 48px;display:flex;align-items:center;justify-content:center}.footer-brand{font-size:22px;font-weight:800;color:#F4F1EC;letter-spacing:-.5px;line-height:1}.footer-divider{width:1px;height:36px;background-color:#E5004C;margin:0 20px;flex-shrink:0}.footer-tags{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.footer-tag-item{font-size:12px;font-weight:700;color:#F4F1EC;border:1px solid #4A4A4A;padding:5px 12px}.footer-tagline{font-size:11px;font-weight:400;color:#6B6B6B;margin-top:8px}</style></head><body><div class="email-wrapper"><div class="email-container"><div class="header"><div class="header-logo">Albert</div><div class="header-tag">Pagamento</div></div><div class="hero"><div class="hero-divider"></div><p class="hero-eyebrow">— Atenção —</p><h1 class="hero-title">Pagamento não<br/><span>concluído.</span></h1><p class="hero-subtitle">{{company_name}}</p></div><div class="body-section"><p class="greeting">Oi, {{partner_first_name}}!</p><p class="body-text">Notamos que o pagamento do seu plano não foi concluído. Para evitar a perda de acesso e a inativação da sua conta, é importante regularizar a situação o quanto antes.</p><div class="highlight-block"><p>Sugerimos que entre em contato com o banco emissor do seu cartão para verificar o que ocorreu. Caso prefira, você pode tentar realizar o pagamento com <strong>outro cartão</strong>.</p></div><p class="body-text">Se precisar de qualquer ajuda, é só nos chamar!</p></div><div class="cta-section"><a href="javascript:void(0)" style="cursor:default;pointer-events:none;color:#FFFFFF!important;" class="cta-button">Realizar pagamento &rarr;</a></div><div class="post-cta-highlight"><p><strong>{{company_name}}</strong></p></div><div class="email-closing"><p>Qualquer dúvida, estamos à disposição.</p><p style="margin-top:8px;font-size:14px;font-weight:700;color:#0E0E0E;">Equipe Albert</p></div><div class="footer"><div class="footer-brand">Albert</div><div class="footer-divider"></div><div><div class="footer-tags"><span class="footer-tag-item">+ fidelização</span><span class="footer-tag-item">+ vendas</span><span class="footer-tag-item">+ inovação</span></div><div class="footer-tagline">O motor que acelera o crescimento do seu negócio.</div></div></div></div></div></body></html>`);
+
+// ── TEMPLATE DATA ─────────────────────────────────────────────────────────────
+const T = {
+  'email_bol-d4':  { title:'Seu boleto Albert está pronto para pagamento', meta:'Boleto · D-4 · E-mail', trigger:'4 dias antes do vencimento', vars:['{{company_name}}','{{partner_first_name}}','{{valor_reais}}','{{boleto_url}}'], html: EMAIL_BOL_D4 },
+  'wpp_bol-d1':    { title:'A definir', meta:'Boleto · D-1 · WhatsApp', trigger:'1 dia antes do vencimento', vars:['{{company_name}}','{{boleto_url}}'] },
+  'email_bol-d0':  { title:'Seu boleto vence hoje!', meta:'Boleto · D+0 · E-mail', trigger:'Dia do vencimento', vars:['{{company_name}}','{{valor_reais}}','{{boleto_url}}'], html: EMAIL_BOL_D0 },
+  'wpp_bol-d0':    { title:'A definir', meta:'Boleto · D+0 · WhatsApp', trigger:'Dia do vencimento', vars:['{{company_name}}','{{boleto_url}}'] },
+  'wpp_bol-p1':    { title:'A definir', meta:'Boleto · D+1 · WhatsApp', trigger:'1 dia após o vencimento', vars:['{{company_name}}','{{boleto_url}}'] },
+  'wpp_bol-p4':    { title:'A definir', meta:'Boleto · D+4 · WhatsApp', trigger:'4 dias após o vencimento', vars:['{{company_name}}','{{boleto_url}}'] },
+  'email_bol-p7':  { title:'Sua assinatura Albert está em atraso!', meta:'Boleto · D+7 · E-mail', trigger:'7 dias após o vencimento', vars:['{{company_name}}','{{partner_first_name}}','{{boleto_url}}'], html: EMAIL_BOL_P7 },
+  'email_bol-p15': { title:'Regularize sua assinatura antes da suspensão!', meta:'Boleto · D+15 · E-mail', trigger:'15 dias após o vencimento', vars:['{{company_name}}','{{partner_first_name}}','{{boleto_url}}'], html: EMAIL_BOL_P15 },
+  'email_confirmacao': { title:'Seu Pagamento foi confirmado! Tudo certo!', meta:'Boleto e Cartão · Evento · E-mail', trigger:'Confirmação de pagamento recebido', vars:['{{company_name}}','{{partner_first_name}}'], html: EMAIL_CONFIRMACAO },
+  'email_card-fail':   { title:'Atenção: Pagamento reprovado.', meta:'Cartão · Evento · E-mail', trigger:'Falha na cobrança automática', vars:['{{company_name}}','{{partner_first_name}}'], html: EMAIL_CARD_FAIL },
+};
+
+const iconMap  = { wpp: WPP_SVG, email: EMAIL_SVG };
+const labelMap = { wpp: 'WhatsApp', email: 'E-mail' };
+const varClass = { wpp: 'var-wpp', email: 'var-email' };
+
+// Raw HTML for copy (with original n8n vars restored)
+const RAW = {
+  'email_bol-d4':  EMAIL_BOL_D4.replace(/\{\{company_name\}\}/g,"{{ $('Execute a SQL query').item.json.company_name }}").replace(/\{\{partner_first_name\}\}/g,"{{ $('Execute a SQL query').item.json.partner_first_name }}").replace(/\{\{valor_reais\}\}/g,"{{ $('Execute a SQL query').item.json.valor_reais }}").replace(/href="javascript:void\(0\)" style="cursor:default;pointer-events:none;color:#FFFFFF!important;text-decoration:none!important;"/g, `href="{{ $('Execute a SQL query').item.json.boleto_url }}"`).replace(/href="javascript:void\(0\)" style="cursor:default;pointer-events:none;color:#FFFFFF;"/g, `href="{{ $('Execute a SQL query').item.json.boleto_url }}"`),
+  'email_bol-d0':  EMAIL_BOL_D0.replace(/\{\{company_name\}\}/g,"{{ $('Execute a SQL query').item.json.company_name }}").replace(/\{\{valor_reais\}\}/g,"{{ $('Execute a SQL query').item.json.valor_reais }}").replace(/href="javascript:void\(0\)" style="cursor:default;pointer-events:none;color:#FFFFFF;"/g,`href="{{ $('Execute a SQL query').item.json.boleto_url }}"`),
+  'email_bol-p7':  EMAIL_BOL_P7.replace(/\{\{company_name\}\}/g,"{{ $('Execute a SQL query').item.json.company_name }}").replace(/\{\{partner_first_name\}\}/g,"{{ $('Execute a SQL query').item.json.partner_first_name }}").replace(/href="javascript:void\(0\)" style="cursor:default;pointer-events:none;color:#FFFFFF;"/g,`href="{{ $('Execute a SQL query').item.json.boleto_url }}"`),
+  'email_bol-p15': EMAIL_BOL_P15.replace(/\{\{company_name\}\}/g,"{{ $('Execute a SQL query').item.json.company_name }}").replace(/\{\{partner_first_name\}\}/g,"{{ $('Execute a SQL query').item.json.partner_first_name }}").replace(/href="javascript:void\(0\)" style="cursor:default;pointer-events:none;color:#FFFFFF;"/g,`href="{{ $('Execute a SQL query').item.json.boleto_url }}"`),
+  'email_confirmacao': EMAIL_CONFIRMACAO.replace(/\{\{company_name\}\}/g,"{{ $('Execute a SQL query').item.json.company_name }}").replace(/\{\{partner_first_name\}\}/g,"{{ $('Execute a SQL query').item.json.partner_first_name }}").replace(/href="javascript:void\(0\)" style="cursor:default;pointer-events:none;color:#FFFFFF!important;"/g,`href="https://parceiros.oialbert.com.br/"`),
+  'email_card-fail': EMAIL_CARD_FAIL.replace(/\{\{company_name\}\}/g,"{{ $('Execute a SQL query').item.json.company_name }}").replace(/\{\{partner_first_name\}\}/g,"{{ $('Execute a SQL query').item.json.partner_first_name }}").replace(/href="javascript:void\(0\)" style="cursor:default;pointer-events:none;color:#FFFFFF!important;"/g,`href="https://parceiros.oialbert.com.br/"`),
+};
+
+function openModal(ch, id) {
+  const t = T[ch + '_' + id]; if (!t) return;
+
+  // highlight timeline dot
+  document.querySelectorAll('.tl-dot').forEach(d => d.classList.remove('active-dot'));
+  document.querySelectorAll('.tl-label').forEach(d => d.classList.remove('active-label'));
+  const dot = document.querySelector(`.tl-dot[data-id="${ch}_${id}"]`);
+  if (dot) {
+    dot.classList.add('active-dot');
+    dot.parentElement.querySelector('.tl-label').classList.add('active-label');
+  }
+
+  document.getElementById('modalIcon').innerHTML = iconMap[ch];
+  document.getElementById('modalTitle').textContent = t.title;
+
+  const rawKey = ch + '_' + id;
+  const hasRaw = !!RAW[rawKey];
+  const copyBtn = hasRaw
+    ? `<button class="copy-btn" id="copyBtn" onclick="copyHTML('${rawKey}')">📋 Copiar HTML</button>`
+    : '';
+
+  document.getElementById('modalMeta').innerHTML =
+    `<span><strong>Contexto:</strong> ${t.meta} &nbsp;·&nbsp; <strong>Canal:</strong> ${labelMap[ch]}</span>${copyBtn}`;
+
+  let html = '';
+  if (ch === 'email' && t.html) {
+    const encoded = t.html.replace(/"/g, '&quot;');
+    html = `<div class="email-frame-wrap"><iframe srcdoc="${encoded}" scrolling="yes" style="width:100%;height:500px;border:none;" sandbox="allow-same-origin"></iframe></div>`;
+  } else {
+    html = `<div class="placeholder-box"><span>✏️</span>Template a definir<div style="margin-top:8px;font-size:11px;color:#bbb;">O conteúdo deste template ainda será criado</div></div>`;
+  }
+
+  if (t.vars && t.vars.length) {
+    html += `<div class="vars-section"><div class="vars-label">Variáveis dinâmicas</div><div class="vars">${t.vars.map(v=>`<span class="var-tag ${varClass[ch]}">${v}</span>`).join('')}</div></div>`;
+  }
+  html += `<div class="trigger-row">⚡ Gatilho: ${t.trigger}</div>`;
+
+  document.getElementById('modalBody').innerHTML = html;
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function copyHTML(key) {
+  const raw = RAW[key];
+  if (!raw) return;
+  navigator.clipboard.writeText(raw).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = '✅ Copiado!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Copiar HTML'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.querySelectorAll('.tl-dot').forEach(d => d.classList.remove('active-dot'));
+  document.querySelectorAll('.tl-label').forEach(d => d.classList.remove('active-label'));
+}
+function closeOnOverlay(e) { if (e.target === document.getElementById('modalOverlay')) closeModal(); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+function showTab(name, e) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  e.target.classList.add('active');
+  document.getElementById('tab-' + name).classList.add('active');
+}
+</script>
 </body>
 </html>
